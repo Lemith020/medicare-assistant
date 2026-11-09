@@ -14,3 +14,10 @@ Smart health management Android app built with Kotlin. Helps patients, elderly p
 - AI-based report summary (with disclaimer)
 - Voice commands
 - Doctor connect
+
+## Target Users
+
+- Chronic patients (diabetes, hypertension)
+- Elderly people
+- Caregivers and family members
+- Doctors and medical staff
