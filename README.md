@@ -36,6 +36,20 @@ Smart health management Android app built with Kotlin. Helps patients, elderly p
 - Networking: Retrofit, OkHttp
 - Charts: Vico
 
+- ## Roadmap
+
+- [ ] Medicine CRUD with Room
+- [ ] Reminders and alarms
+- [ ] Stock alerts
+- [ ] Health logging and charts
+- [ ] Authentication and roles
+- [ ] SOS
+- [ ] Caregiver monitoring
+- [ ] Report upload and OCR
+- [ ] AI report summary
+- [ ] Voice access
+- [ ] Doctor connect
+
 
 ## Getting Started
 
