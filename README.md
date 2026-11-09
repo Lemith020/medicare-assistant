@@ -35,3 +35,12 @@ Smart health management Android app built with Kotlin. Helps patients, elderly p
 - ML: ML Kit Text Recognition, OpenCV
 - Networking: Retrofit, OkHttp
 - Charts: Vico
+
+
+## Getting Started
+
+1. Clone the repo
+   git clone https://github.com/Lemith020/medimate-android.git
+2. Open in Android Studio (Koala or newer)
+3. Add google-services.json to the app folder
+4. Sync Gradle and run on an emulator or device (API 26+)
