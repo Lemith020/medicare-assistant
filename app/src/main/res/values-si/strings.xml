@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Medicare</string>
+
+    <string name="onboarding_title_1">එක මාත්‍රාවක්වත් මග හරින්න එපා</string>
+    <string name="onboarding_body_1">අන්තර්ජාලය නැතත්, නියමිත වේලාවට Medicare ඔබට මතක් කරයි.</string>
+    <string name="onboarding_desc_1">කැප්සියුල බෙහෙත් පෙත්තක්</string>
+    <string name="onboarding_title_2">සැමට දැනෙන මතක් කිරීම්</string>
+    <string name="onboarding_body_2">ශබ්ද ඇලාමය, ශක්තිමත් කම්පනය සහ ෆ්ලෑෂ් ආලෝකය නිසා කිසිදු මාත්‍රාවක් මග හැරෙන්නේ නැත.</string>
+    <string name="onboarding_desc_2">නාද වන ඇලාම් ඔරලෝසුවක්</string>
+    <string name="onboarding_title_3">අපි පටන් ගමු</string>
+    <string name="onboarding_body_3">ඔබේ බෙහෙත් එක් වරක් එක් කරන්න, ඉතිරිය Medicare බලා ගනී.</string>
+    <string name="onboarding_desc_3">ටික් ලකුණක් සහිත හදවතක්</string>
+    <string name="onboarding_skip">මඟහරින්න</string>
+    <string name="onboarding_next">ඊළඟ</string>
+    <string name="onboarding_get_started">ආරම්භ කරන්න</string>
+    <string name="onboarding_page_of">පිටුව %1$d / %2$d</string>
+
+    <string name="greeting_morning">සුභ උදෑසනක්</string>
+    <string name="greeting_afternoon">සුභ දහවලක්</string>
+    <string name="greeting_evening">සුභ සන්ධ්‍යාවක්</string>
+    <string name="home_subtitle">අද බෙහෙත් · ගත්තා %1$d / %2$d</string>
+    <string name="home_next_dose">ඊළඟ මාත්‍රාව · %1$s</string>
+    <string name="home_all_done">අද සියල්ල ඉවරයි</string>
+    <string name="home_all_done_body">අද ඉතිරි මාත්‍රා නැත.</string>
+    <string name="home_low_stock">තොගය අඩුයි: %1$s පෙති %2$d ක් ඉතිරියි</string>
+    <string name="action_taken">ගත්තා</string>
+    <string name="action_skip">මඟහරින්න</string>
+    <string name="action_taken_for">%1$s ගත්තා ලෙස සලකුණු කරන්න</string>
+    <string name="action_skip_for">%1$s මඟහරින්න</string>
+    <string name="status_taken">ගත්තා</string>
+    <string name="status_missed">මග හැරුණා</string>
+    <string name="status_skipped">මඟහැරියා</string>
+    <string name="status_upcoming">ඉදිරියේ</string>
+
+    <string name="nav_today">අද</string>
+    <string name="nav_medicines">බෙහෙත්</string>
+    <string name="nav_history">ඉතිහාසය</string>
+    <string name="nav_settings">සැකසුම්</string>
+    <string name="coming_soon">ඉක්මනින් එයි</string>
+
+    <string name="settings_title">සැකසුම්</string>
+    <string name="settings_appearance">පෙනුම</string>
+    <string name="settings_language">භාෂාව</string>
+    <string name="theme_system">පද්ධතියට අනුව</string>
+    <string name="theme_light">ලා</string>
+    <string name="theme_dark">අඳුරු</string>
+</resources>
