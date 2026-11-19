@@ -111,7 +111,7 @@ fun OnboardingScreen(
             contentAlignment = Alignment.CenterEnd
         ) {
             if (!lastPage) {
-                TextButton(onClick = { viewModel.complete(onFinished) }) {
+                TextButton(onClick = { scope.launch { pagerState.animateScrollToPage(pages.lastIndex) } }) {
                     Text("Skip", color = Ink, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
