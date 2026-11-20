@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -27,13 +26,26 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
-    val doses by viewModel.doses.collectAsState()
-    val locale = LocalConfiguration.current.locales[0]
+fun HomeScreen(
+    onAddMedicine: () -> Unit,
+    viewModel: HomeViewModel = viewModel()
+) {
+    val state by viewModel.state.collectAsState()
+    if (state.loaded) {
+        HomeContent(state = state, onAddMedicine = onAddMedicine, viewModel = viewModel)
+    }
+}
 
-    val sorted = remember(doses) { doses.sortedBy { it.time } }
-    val next = sorted.firstOrNull { it.status == DoseStatus.UPCOMING }
-    val others = sorted.filter { it != next }
+@Composable
+private fun HomeContent(
+    state: HomeState,
+    onAddMedicine: () -> Unit,
+    viewModel: HomeViewModel
+) {
+    val locale = LocalConfiguration.current.locales[0]
+    val doses = state.doses
+    val next = doses.firstOrNull { it.status == DoseStatus.UPCOMING }
+    val others = doses.filter { it != next }
     val takenCount = doses.count { it.status == DoseStatus.TAKEN }
 
     val greeting = when (LocalTime.now().hour) {
@@ -63,25 +75,34 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(
-                text = stringResource(R.string.home_subtitle, takenCount, doses.size),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 16.sp
+            if (doses.isNotEmpty()) {
+                Text(
+                    text = stringResource(R.string.home_subtitle, takenCount, doses.size),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 16.sp
+                )
+            }
+        }
+
+        state.completed.forEach { medicine ->
+            CourseCompleteCard(
+                medicineName = medicine.name,
+                onDismiss = { viewModel.dismissCompletion(medicine.id) }
             )
         }
 
-        if (next != null) {
-            NextDoseCard(
+        when {
+            doses.isEmpty() -> EmptyHomeCard(onAddMedicine = onAddMedicine)
+            next != null -> NextDoseCard(
                 dose = next,
                 locale = locale,
-                onTaken = { viewModel.mark(next.id, DoseStatus.TAKEN) },
-                onSkip = { viewModel.mark(next.id, DoseStatus.SKIPPED) }
+                onTaken = { viewModel.mark(next.key, DoseStatus.TAKEN) },
+                onSkip = { viewModel.mark(next.key, DoseStatus.SKIPPED) }
             )
-        } else {
-            AllDoneCard()
+            else -> AllDoneCard()
         }
 
-        LowStockBanner(name = viewModel.lowStockName, count = viewModel.lowStockCount)
+        state.lowStock?.let { LowStockBanner(name = it.name, count = it.stock) }
 
         others.forEach { DoseRow(dose = it, locale = locale) }
     }
