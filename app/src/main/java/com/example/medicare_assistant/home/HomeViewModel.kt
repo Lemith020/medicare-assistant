@@ -1,38 +1,63 @@
 package com.example.medicare_assistant.home
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.medicare_assistant.medicine.Medicine
+import com.example.medicare_assistant.medicine.MedicineRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.time.LocalTime
 
 enum class DoseStatus { TAKEN, MISSED, SKIPPED, UPCOMING }
 
 data class Dose(
-    val id: Int,
+    val key: String,
     val name: String,
     val dosage: String,
     val time: LocalTime,
     val status: DoseStatus
 )
 
-class HomeViewModel : ViewModel() {
+data class HomeState(
+    val loaded: Boolean = false,
+    val doses: List<Dose> = emptyList(),
+    val lowStock: Medicine? = null,
+    val completed: List<Medicine> = emptyList()
+)
 
-    private val _doses = MutableStateFlow(
-        listOf(
-            Dose(1, "Amlodipine", "5 mg", LocalTime.of(8, 0), DoseStatus.TAKEN),
-            Dose(2, "Losartan", "50 mg", LocalTime.of(13, 0), DoseStatus.MISSED),
-            Dose(3, "Metformin", "500 mg", LocalTime.of(14, 0), DoseStatus.UPCOMING),
-            Dose(4, "Atorvastatin", "20 mg", LocalTime.of(21, 0), DoseStatus.UPCOMING)
+class HomeViewModel(app: Application) : AndroidViewModel(app) {
+
+    private val repo = MedicineRepository.get(app)
+    private val marks = MutableStateFlow<Map<String, DoseStatus>>(emptyMap())
+
+    val state: StateFlow<HomeState> = combine(repo.medicines, marks) { medicines, statuses ->
+        val today = LocalDate.now()
+        val active = medicines.filter { !it.isCompleted(today) && !it.startDate.isAfter(today) }
+        HomeState(
+            loaded = true,
+            doses = active.flatMap { medicine ->
+                medicine.times.values.map { time ->
+                    val key = "$today|${medicine.id}|$time"
+                    Dose(key, medicine.name, medicine.dosage, time, statuses[key] ?: DoseStatus.UPCOMING)
+                }
+            }.sortedBy { it.time },
+            lowStock = active.filter { it.isLowStock }.minByOrNull { it.stock },
+            completed = medicines.filter { it.isCompleted(today) && !it.completionDismissed }
         )
-    )
-    val doses: StateFlow<List<Dose>> = _doses.asStateFlow()
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, HomeState())
 
-    val lowStockName = "Losartan"
-    val lowStockCount = 4
+    fun mark(key: String, status: DoseStatus) {
+        marks.update { it + (key to status) }
+    }
 
-    fun mark(id: Int, status: DoseStatus) {
-        _doses.update { list -> list.map { if (it.id == id) it.copy(status = status) else it } }
+    fun dismissCompletion(id: Long) {
+        viewModelScope.launch { repo.dismissCompletion(id) }
     }
 }
