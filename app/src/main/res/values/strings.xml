@@ -77,4 +77,63 @@
         <item quantity="other">%d tablets left · Low stock</item>
     </plurals>
 
+    <string name="form_add_title">Add medicine</string>
+    <string name="form_edit_title">Edit medicine</string>
+    <string name="action_back">Back</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Save medicine</string>
+    <string name="action_got_it">Got it</string>
+    <string name="form_name">Medicine name</string>
+    <string name="form_name_hint">Metformin</string>
+    <string name="form_dosage">Dosage</string>
+    <string name="form_dosage_hint">500 mg · 1 tablet</string>
+    <string name="form_category">What is it for?</string>
+    <string name="form_when">When do you take it?</string>
+    <string name="form_time_for">%1$s time</string>
+    <string name="form_stock">Tablets in stock</string>
+    <string name="form_alert">Alert below</string>
+    <string name="form_course">How long will you take it?</string>
+    <string name="form_custom_days">Number of days</string>
+    <string name="form_ends_on">Course ends on %1$s</string>
+    <string name="form_ongoing_note">No end date. Reminders continue until you delete it.</string>
+    <string name="error_name">Enter the medicine name</string>
+    <string name="error_slots">Choose at least one time</string>
+    <string name="error_number">Enter a number</string>
+    <string name="error_days">Enter 1 to 365 days</string>
+
+    <string name="slot_morning">Morning</string>
+    <string name="slot_noon">Noon</string>
+    <string name="slot_evening">Evening</string>
+    <string name="slot_night">Night</string>
+
+    <string name="course_1w">1 week</string>
+    <string name="course_2w">2 weeks</string>
+    <string name="course_3w">3 weeks</string>
+    <string name="course_1m">1 month</string>
+    <string name="course_custom">Custom</string>
+    <string name="course_ongoing">Ongoing</string>
+    <string name="course_completed_on">Course completed · %1$s</string>
+    <string name="section_completed">Completed courses</string>
+
+    <string name="cat_diabetes">Diabetes</string>
+    <string name="cat_blood_pressure">Blood pressure</string>
+    <string name="cat_cholesterol">Cholesterol</string>
+    <string name="cat_heart">Heart</string>
+    <string name="cat_infection">Infection</string>
+    <string name="cat_cold_fever">Cold and fever</string>
+    <string name="cat_pain">Pain</string>
+    <string name="cat_stomach">Stomach</string>
+    <string name="cat_vitamins">Vitamins</string>
+    <string name="cat_other">Other</string>
+
+    <string name="home_empty_title">Nothing to take today</string>
+    <string name="home_empty_body">Add a medicine and Medicare will remind you on time.</string>
+    <string name="home_complete_title">Course complete!</string>
+    <string name="home_complete_body">You finished your %1$s course. Every dose counted. Well done for taking care of yourself, your body says thank you.</string>
+
+    <plurals name="days_left">
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+
 </resources>
