@@ -26,11 +26,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
@@ -55,11 +56,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.medicare_assistant.R
 import com.example.medicare_assistant.ui.components.PrimaryButton
-import com.example.medicare_assistant.ui.theme.Cream
-import com.example.medicare_assistant.ui.theme.DotInactive
 import com.example.medicare_assistant.ui.theme.Ink
-import com.example.medicare_assistant.ui.theme.InkMuted
 import com.example.medicare_assistant.ui.theme.LuminousYellow
 import kotlinx.coroutines.launch
 
@@ -74,25 +73,23 @@ fun OnboardingScreen(
     onFinished: () -> Unit,
     viewModel: OnboardingViewModel = viewModel()
 ) {
-    val pages = remember {
-        listOf(
-            OnboardingPage(
-                "Never miss a dose",
-                "Medicare reminds you at the right time, even without internet.",
-                "A capsule pill"
-            ),
-            OnboardingPage(
-                "Reminders everyone can notice",
-                "Loud alarm, strong vibration and a flashlight blink, so no dose goes unnoticed.",
-                "A ringing alarm clock"
-            ),
-            OnboardingPage(
-                "Let’s get started",
-                "Add your medicines once and Medicare takes care of the rest.",
-                "A heart with a check mark"
-            )
+    val pages = listOf(
+        OnboardingPage(
+            stringResource(R.string.onboarding_title_1),
+            stringResource(R.string.onboarding_body_1),
+            stringResource(R.string.onboarding_desc_1)
+        ),
+        OnboardingPage(
+            stringResource(R.string.onboarding_title_2),
+            stringResource(R.string.onboarding_body_2),
+            stringResource(R.string.onboarding_desc_2)
+        ),
+        OnboardingPage(
+            stringResource(R.string.onboarding_title_3),
+            stringResource(R.string.onboarding_body_3),
+            stringResource(R.string.onboarding_desc_3)
         )
-    }
+    )
     val pagerState = rememberPagerState(pageCount = { pages.size })
     val scope = rememberCoroutineScope()
     val lastPage = pagerState.currentPage == pages.lastIndex
@@ -100,7 +97,7 @@ fun OnboardingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Cream)
+            .background(MaterialTheme.colorScheme.background)
             .systemBarsPadding()
             .padding(horizontal = 20.dp, vertical = 16.dp)
     ) {
@@ -112,7 +109,12 @@ fun OnboardingScreen(
         ) {
             if (!lastPage) {
                 TextButton(onClick = { scope.launch { pagerState.animateScrollToPage(pages.lastIndex) } }) {
-                    Text("Skip", color = Ink, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                    Text(
+                        text = stringResource(R.string.onboarding_skip),
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
                 }
             }
         }
@@ -128,7 +130,9 @@ fun OnboardingScreen(
         Spacer(Modifier.height(24.dp))
 
         PrimaryButton(
-            text = if (lastPage) "Get started" else "Next",
+            text = stringResource(
+                if (lastPage) R.string.onboarding_get_started else R.string.onboarding_next
+            ),
             onClick = {
                 if (lastPage) {
                     viewModel.complete(onFinished)
@@ -158,7 +162,7 @@ private fun PageContent(index: Int, page: OnboardingPage) {
             Text(
                 text = page.title,
                 modifier = Modifier.semantics { heading() },
-                color = Ink,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
@@ -166,7 +170,7 @@ private fun PageContent(index: Int, page: OnboardingPage) {
             Spacer(Modifier.height(12.dp))
             Text(
                 text = page.body,
-                color = InkMuted,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontSize = 18.sp,
                 lineHeight = 26.sp,
                 textAlign = TextAlign.Center
@@ -322,10 +326,11 @@ private fun HeartArt() {
 
 @Composable
 private fun PageDots(count: Int, current: Int) {
+    val description = stringResource(R.string.onboarding_page_of, current + 1, count)
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clearAndSetSemantics { contentDescription = "Page ${current + 1} of $count" },
+            .clearAndSetSemantics { contentDescription = description },
         horizontalArrangement = Arrangement.Center
     ) {
         repeat(count) { i ->
@@ -336,7 +341,10 @@ private fun PageDots(count: Int, current: Int) {
                     .height(10.dp)
                     .width(width)
                     .clip(CircleShape)
-                    .background(if (i == current) Ink else DotInactive)
+                    .background(
+                        if (i == current) MaterialTheme.colorScheme.onBackground
+                        else MaterialTheme.colorScheme.outline
+                    )
             )
         }
     }
