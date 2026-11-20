@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Medicare</string>
+
+    <string name="onboarding_title_1">ஒரு டோஸையும் தவறவிடாதீர்கள்</string>
+    <string name="onboarding_body_1">இணையம் இல்லாவிட்டாலும் சரியான நேரத்தில் Medicare உங்களுக்கு நினைவூட்டும்.</string>
+    <string name="onboarding_desc_1">ஒரு மருந்து காப்ஸ்யூல்</string>
+    <string name="onboarding_title_2">அனைவருக்கும் புரியும் நினைவூட்டல்கள்</string>
+    <string name="onboarding_body_2">உரத்த அலாரம், வலுவான அதிர்வு மற்றும் ஃபிளாஷ் ஒளி மூலம் எந்த டோஸும் தவறாது.</string>
+    <string name="onboarding_desc_2">ஒலிக்கும் அலாரம் கடிகாரம்</string>
+    <string name="onboarding_title_3">தொடங்கலாம்</string>
+    <string name="onboarding_body_3">உங்கள் மருந்துகளை ஒருமுறை சேர்த்தால் போதும், மீதியை Medicare பார்த்துக் கொள்ளும்.</string>
+    <string name="onboarding_desc_3">சரிபார்ப்பு குறியுடன் இதயம்</string>
+    <string name="onboarding_skip">தவிர்</string>
+    <string name="onboarding_next">அடுத்து</string>
+    <string name="onboarding_get_started">தொடங்கு</string>
+    <string name="onboarding_page_of">பக்கம் %1$d / %2$d</string>
+
+    <string name="greeting_morning">காலை வணக்கம்</string>
+    <string name="greeting_afternoon">மதிய வணக்கம்</string>
+    <string name="greeting_evening">மாலை வணக்கம்</string>
+    <string name="home_subtitle">இன்றைய மருந்துகள் · எடுத்தது %1$d / %2$d</string>
+    <string name="home_next_dose">அடுத்த டோஸ் · %1$s</string>
+    <string name="home_all_done">இன்றைக்கு எல்லாம் முடிந்தது</string>
+    <string name="home_all_done_body">இன்று மீதமுள்ள டோஸ்கள் இல்லை.</string>
+    <string name="home_low_stock">இருப்பு குறைவு: %1$s %2$d மட்டுமே உள்ளது</string>
+    <string name="action_taken">எடுத்தேன்</string>
+    <string name="action_skip">தவிர்</string>
+    <string name="action_taken_for">%1$s எடுத்ததாகக் குறிக்கவும்</string>
+    <string name="action_skip_for">%1$s தவிர்க்கவும்</string>
+    <string name="status_taken">எடுத்தது</string>
+    <string name="status_missed">தவறியது</string>
+    <string name="status_skipped">தவிர்க்கப்பட்டது</string>
+    <string name="status_upcoming">வரவிருக்கிறது</string>
+
+    <string name="nav_today">இன்று</string>
+    <string name="nav_medicines">மருந்துகள்</string>
+    <string name="nav_history">வரலாறு</string>
+    <string name="nav_settings">அமைப்புகள்</string>
+    <string name="coming_soon">விரைவில்</string>
+
+    <string name="settings_title">அமைப்புகள்</string>
+    <string name="settings_appearance">தோற்றம்</string>
+    <string name="settings_language">மொழி</string>
+    <string name="theme_system">சாதனத்தைப் பின்பற்று</string>
+    <string name="theme_light">வெளிச்சம்</string>
+    <string name="theme_dark">இருள்</string>
+
+    <string name="medicines_title">என் மருந்துகள்</string>
+    <string name="medicines_empty_title">இன்னும் மருந்துகள் இல்லை</string>
+    <string name="medicines_empty_body">முதல் மருந்தைச் சேர்க்க “மருந்தைச் சேர்” என்பதை அழுத்தவும்.</string>
+    <string name="action_add_medicine">மருந்தைச் சேர்</string>
+    <string name="action_edit">திருத்து</string>
+    <string name="action_delete">நீக்கு</string>
+    <string name="action_cancel">ரத்து செய்</string>
+    <string name="action_edit_for">%1$s ஐத் திருத்து</string>
+    <string name="action_delete_for">%1$s ஐ நீக்கு</string>
+    <string name="dialog_delete_title">மருந்தை நீக்கவா?</string>
+    <string name="dialog_delete_message">%1$s மற்றும் அதன் நினைவூட்டல்கள் நீக்கப்படும்.</string>
+
+    <string name="dialog_add_title">புதிய மருந்தைச் சேர்</string>
+    <string name="dialog_edit_title">மருந்தைத் திருத்து</string>
+    <string name="label_medicine_name">மருந்தின் பெயர்</string>
+    <string name="label_dosage">அளவு (எ.கா. 500 mg)</string>
+    <string name="label_stock">தொடக்க இருப்பு</string>
+    <string name="action_add">சேர்</string>
+
+    <plurals name="medicines_count">
+        <item quantity="one">%d மருந்து</item>
+        <item quantity="other">%d மருந்துகள்</item>
+    </plurals>
+    <plurals name="tablets_left">
+        <item quantity="one">%d மாத்திரை மீதம்</item>
+        <item quantity="other">%d மாத்திரைகள் மீதம்</item>
+    </plurals>
+    <plurals name="tablets_left_low">
+        <item quantity="one">%d மாத்திரை மீதம் · இருப்பு குறைவு</item>
+        <item quantity="other">%d மாத்திரைகள் மீதம் · இருப்பு குறைவு</item>
+    </plurals>
+</resources>
