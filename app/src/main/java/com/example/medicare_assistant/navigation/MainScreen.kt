@@ -1,5 +1,6 @@
 package com.example.medicare_assistant.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -37,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicare_assistant.R
 import com.example.medicare_assistant.home.HomeScreen
+import com.example.medicare_assistant.medicine.AddMedicineScreen
 import com.example.medicare_assistant.medicine.MedicinesScreen
 import com.example.medicare_assistant.settings.SettingsScreen
 import com.example.medicare_assistant.ui.theme.Ink
@@ -52,22 +55,48 @@ enum class MainTab(@StringRes val labelRes: Int) {
 @Composable
 fun MainScreen() {
     var tab by rememberSaveable { mutableStateOf(MainTab.TODAY) }
+    var adding by rememberSaveable { mutableStateOf(false) }
+    var editId by rememberSaveable { mutableStateOf<Long?>(null) }
+    var formKey by rememberSaveable { mutableIntStateOf(0) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .systemBarsPadding()
-    ) {
-        Box(Modifier.weight(1f)) {
-            when (tab) {
-                MainTab.TODAY -> HomeScreen()
-                MainTab.MEDICINES -> MedicinesScreen()
-                MainTab.HISTORY -> PlaceholderScreen(R.string.nav_history)
-                MainTab.SETTINGS -> SettingsScreen()
+    fun openForm(id: Long?) {
+        editId = id
+        formKey += 1
+        adding = true
+    }
+
+    BackHandler(enabled = adding) { adding = false }
+
+    if (adding) {
+        AddMedicineScreen(
+            editId = editId,
+            formKey = formKey,
+            onBack = { adding = false },
+            onSaved = {
+                adding = false
+                tab = MainTab.MEDICINES
             }
+        )
+    } else {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .systemBarsPadding()
+        ) {
+            Box(Modifier.weight(1f)) {
+                when (tab) {
+                    MainTab.TODAY -> HomeScreen(onAddMedicine = { openForm(null) })
+                    MainTab.MEDICINES -> MedicinesScreen(
+                        onAddClick = { openForm(null) },
+                        onEditClick = { openForm(it) }
+                    )
+                    MainTab.HISTORY -> PlaceholderScreen(R.string.nav_history)
+                    MainTab.SETTINGS -> SettingsScreen()
+                }
+            }
+            BottomBar(selected = tab, onSelect = { tab = it })
         }
-        BottomBar(selected = tab, onSelect = { tab = it })
     }
 }
 
