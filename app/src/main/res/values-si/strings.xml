@@ -44,4 +44,36 @@
     <string name="theme_system">පද්ධතියට අනුව</string>
     <string name="theme_light">ලා</string>
     <string name="theme_dark">අඳුරු</string>
+
+    <string name="medicines_title">මගේ බෙහෙත්</string>
+    <string name="medicines_empty_title">තවම බෙහෙත් නැත</string>
+    <string name="medicines_empty_body">ඔබේ පළමු බෙහෙත එක් කිරීමට “බෙහෙතක් එක් කරන්න” ඔබන්න.</string>
+    <string name="action_add_medicine">බෙහෙතක් එක් කරන්න</string>
+    <string name="action_edit">සංස්කරණය</string>
+    <string name="action_delete">මකන්න</string>
+    <string name="action_cancel">අවලංගු කරන්න</string>
+    <string name="action_edit_for">%1$s සංස්කරණය කරන්න</string>
+    <string name="action_delete_for">%1$s මකන්න</string>
+    <string name="dialog_delete_title">බෙහෙත මකන්නද?</string>
+    <string name="dialog_delete_message">%1$s සහ එහි මතක් කිරීම් ඉවත් වේ.</string>
+
+    <string name="dialog_add_title">නව බෙහෙතක් එක් කරන්න</string>
+    <string name="dialog_edit_title">බෙහෙත සංස්කරණය කරන්න</string>
+    <string name="label_medicine_name">බෙහෙතේ නම</string>
+    <string name="label_dosage">මාත්‍රාව (උදා. 500 mg)</string>
+    <string name="label_stock">මුල් තොගය (පෙති)</string>
+    <string name="action_add">එක් කරන්න</string>
+
+    <plurals name="medicines_count">
+        <item quantity="one">බෙහෙත් %d</item>
+        <item quantity="other">බෙහෙත් %d</item>
+    </plurals>
+    <plurals name="tablets_left">
+        <item quantity="one">පෙති %d ක් ඉතිරියි</item>
+        <item quantity="other">පෙති %d ක් ඉතිරියි</item>
+    </plurals>
+    <plurals name="tablets_left_low">
+        <item quantity="one">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
+        <item quantity="other">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
+    </plurals>
 </resources>
