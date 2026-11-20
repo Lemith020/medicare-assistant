@@ -26,28 +26,38 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicare_assistant.R
+import com.example.medicare_assistant.core.formatDate
 import com.example.medicare_assistant.core.formatTime
 import com.example.medicare_assistant.ui.theme.statusColors
+import java.time.LocalDate
 import java.util.Locale
 
 @Composable
 fun MedicineCard(
     medicine: Medicine,
     locale: Locale,
+    today: LocalDate,
     onEdit: () -> Unit,
     onDelete: () -> Unit
 ) {
     val colors = statusColors()
     val shape = RoundedCornerShape(18.dp)
     val resources = LocalContext.current.resources
-    val low = medicine.isLowStock
+    val completed = medicine.isCompleted(today)
+    val low = medicine.isLowStock && !completed
 
     val stockText = resources.getQuantityString(
         if (low) R.plurals.tablets_left_low else R.plurals.tablets_left,
         medicine.stock,
         medicine.stock
     )
-    val timesText = medicine.times.sorted().joinToString(" · ") { formatTime(it, locale) }
+    val timesText = medicine.times.values.sorted().joinToString(" · ") { formatTime(it, locale) }
+    val daysLeft = medicine.daysLeft(today)
+    val courseText = when {
+        medicine.courseDays == null -> stringResource(R.string.course_ongoing)
+        completed -> stringResource(R.string.course_completed_on, formatDate(medicine.endDate!!, locale))
+        else -> resources.getQuantityString(R.plurals.days_left, daysLeft!!.toInt(), daysLeft.toInt())
+    }
 
     Column(
         modifier = Modifier
@@ -68,6 +78,11 @@ fun MedicineCard(
         )
         Text(
             text = timesText,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontSize = 16.sp
+        )
+        Text(
+            text = courseText,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 16.sp
         )
