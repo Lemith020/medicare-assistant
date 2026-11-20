@@ -76,4 +76,63 @@
         <item quantity="one">%d மாத்திரை மீதம் · இருப்பு குறைவு</item>
         <item quantity="other">%d மாத்திரைகள் மீதம் · இருப்பு குறைவு</item>
     </plurals>
+
+    <string name="form_add_title">மருந்தைச் சேர்</string>
+    <string name="form_edit_title">மருந்தைத் திருத்து</string>
+    <string name="action_back">பின்செல்</string>
+    <string name="action_ok">சரி</string>
+    <string name="action_save">மருந்தைச் சேமி</string>
+    <string name="action_got_it">புரிந்தது</string>
+    <string name="form_name">மருந்தின் பெயர்</string>
+    <string name="form_name_hint">Metformin</string>
+    <string name="form_dosage">அளவு</string>
+    <string name="form_dosage_hint">500 mg · 1 மாத்திரை</string>
+    <string name="form_category">இது எதற்காக?</string>
+    <string name="form_when">எப்போது எடுத்துக்கொள்கிறீர்கள்?</string>
+    <string name="form_time_for">%1$s நேரம்</string>
+    <string name="form_stock">கையிருப்பு மாத்திரைகள்</string>
+    <string name="form_alert">இதற்குக் கீழ் குறைந்தால் எச்சரிக்கை</string>
+    <string name="form_course">எவ்வளவு காலம் எடுத்துக்கொள்வீர்கள்?</string>
+    <string name="form_custom_days">நாட்களின் எண்ணிக்கை</string>
+    <string name="form_ends_on">சிகிச்சை முடியும் நாள்: %1$s</string>
+    <string name="form_ongoing_note">முடிவு தேதி இல்லை. நீங்கள் நீக்கும் வரை நினைவூட்டல்கள் தொடரும்.</string>
+    <string name="error_name">மருந்தின் பெயரை உள்ளிடவும்</string>
+    <string name="error_slots">குறைந்தது ஒரு நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="error_number">எண்ணை உள்ளிடவும்</string>
+    <string name="error_days">1 முதல் 365 நாட்கள் வரை உள்ளிடவும்</string>
+
+    <string name="slot_morning">காலை</string>
+    <string name="slot_noon">மதியம்</string>
+    <string name="slot_evening">மாலை</string>
+    <string name="slot_night">இரவு</string>
+
+    <string name="course_1w">1 வாரம்</string>
+    <string name="course_2w">2 வாரங்கள்</string>
+    <string name="course_3w">3 வாரங்கள்</string>
+    <string name="course_1m">1 மாதம்</string>
+    <string name="course_custom">வேறு</string>
+    <string name="course_ongoing">தொடர்ந்து</string>
+    <string name="course_completed_on">சிகிச்சை முடிந்தது · %1$s</string>
+    <string name="section_completed">முடிந்த சிகிச்சைகள்</string>
+
+    <string name="cat_diabetes">நீரிழிவு</string>
+    <string name="cat_blood_pressure">இரத்த அழுத்தம்</string>
+    <string name="cat_cholesterol">கொலஸ்ட்ரால்</string>
+    <string name="cat_heart">இதயம்</string>
+    <string name="cat_infection">தொற்று</string>
+    <string name="cat_cold_fever">சளி மற்றும் காய்ச்சல்</string>
+    <string name="cat_pain">வலி</string>
+    <string name="cat_stomach">வயிறு</string>
+    <string name="cat_vitamins">வைட்டமின்கள்</string>
+    <string name="cat_other">மற்றவை</string>
+
+    <string name="home_empty_title">இன்று எடுக்க மருந்து இல்லை</string>
+    <string name="home_empty_body">ஒரு மருந்தைச் சேருங்கள், Medicare சரியான நேரத்தில் நினைவூட்டும்.</string>
+    <string name="home_complete_title">சிகிச்சை முடிந்தது!</string>
+    <string name="home_complete_body">%1$s சிகிச்சையை முடித்துவிட்டீர்கள். ஒவ்வொரு டோஸும் முக்கியம். உங்களை நன்றாகக் கவனித்துக்கொண்டதற்குப் பாராட்டுகள், உங்கள் உடல் உங்களுக்கு நன்றி சொல்லும்.</string>
+
+    <plurals name="days_left">
+        <item quantity="one">இன்னும் %d நாள்</item>
+        <item quantity="other">இன்னும் %d நாட்கள்</item>
+    </plurals>
 </resources>
