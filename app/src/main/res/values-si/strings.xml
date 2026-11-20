@@ -76,4 +76,63 @@
         <item quantity="one">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
         <item quantity="other">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
     </plurals>
+
+    <string name="form_add_title">බෙහෙතක් එක් කරන්න</string>
+    <string name="form_edit_title">බෙහෙත සංස්කරණය</string>
+    <string name="action_back">ආපසු</string>
+    <string name="action_ok">හරි</string>
+    <string name="action_save">බෙහෙත සුරකින්න</string>
+    <string name="action_got_it">තේරුණා</string>
+    <string name="form_name">බෙහෙතේ නම</string>
+    <string name="form_name_hint">Metformin</string>
+    <string name="form_dosage">මාත්‍රාව</string>
+    <string name="form_dosage_hint">500 mg · පෙත්ත 1</string>
+    <string name="form_category">මෙය කුමක් සඳහාද?</string>
+    <string name="form_when">බෙහෙත ගන්නේ කවදාද?</string>
+    <string name="form_time_for">%1$s වේලාව</string>
+    <string name="form_stock">ඇති පෙති ගණන</string>
+    <string name="form_alert">මීට අඩු වුණොත් දැනුම් දෙන්න</string>
+    <string name="form_course">කොපමණ කාලයක් ගන්නවාද?</string>
+    <string name="form_custom_days">දින ගණන</string>
+    <string name="form_ends_on">පාඨමාලාව අවසන් වන්නේ %1$s</string>
+    <string name="form_ongoing_note">අවසන් දිනයක් නැත. ඔබ මකන තෙක් මතක් කිරීම් පවතී.</string>
+    <string name="error_name">බෙහෙතේ නම ඇතුළත් කරන්න</string>
+    <string name="error_slots">අවම වශයෙන් එක් වේලාවක් තෝරන්න</string>
+    <string name="error_number">අංකයක් ඇතුළත් කරන්න</string>
+    <string name="error_days">දින 1 සිට 365 දක්වා ඇතුළත් කරන්න</string>
+
+    <string name="slot_morning">උදේ</string>
+    <string name="slot_noon">දහවල්</string>
+    <string name="slot_evening">සවස</string>
+    <string name="slot_night">රාත්‍රී</string>
+
+    <string name="course_1w">සති 1</string>
+    <string name="course_2w">සති 2</string>
+    <string name="course_3w">සති 3</string>
+    <string name="course_1m">මාස 1</string>
+    <string name="course_custom">වෙනත්</string>
+    <string name="course_ongoing">අඛණ්ඩව</string>
+    <string name="course_completed_on">පාඨමාලාව අවසන් · %1$s</string>
+    <string name="section_completed">අවසන් වූ පාඨමාලා</string>
+
+    <string name="cat_diabetes">දියවැඩියාව</string>
+    <string name="cat_blood_pressure">රුධිර පීඩනය</string>
+    <string name="cat_cholesterol">කොලෙස්ටරෝල්</string>
+    <string name="cat_heart">හදවත</string>
+    <string name="cat_infection">ආසාදන</string>
+    <string name="cat_cold_fever">සෙම්ප්‍රතිශ්‍යාව සහ උණ</string>
+    <string name="cat_pain">වේදනාව</string>
+    <string name="cat_stomach">ආමාශය</string>
+    <string name="cat_vitamins">විටමින්</string>
+    <string name="cat_other">වෙනත්</string>
+
+    <string name="home_empty_title">අද ගන්න බෙහෙත් නැත</string>
+    <string name="home_empty_body">බෙහෙතක් එක් කරන්න, Medicare නියමිත වේලාවට මතක් කරයි.</string>
+    <string name="home_complete_title">පාඨමාලාව අවසන්!</string>
+    <string name="home_complete_body">ඔබ %1$s පාඨමාලාව සම්පූර්ණ කළා. හැම මාත්‍රාවක්ම වැදගත් වුණා. ඔබේ සෞඛ්‍යය රැකගැනීම ගැන සුභ පැතුම්, ඔබේ ශරීරය ඔබට ස්තූති කරයි.</string>
+
+    <plurals name="days_left">
+        <item quantity="one">තව දින %d ක් ඉතිරියි</item>
+        <item quantity="other">තව දින %d ක් ඉතිරියි</item>
+    </plurals>
 </resources>
