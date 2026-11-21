@@ -153,4 +153,39 @@
     <string name="perm_notifications_body">Medicare ට ඔබට මතක් කිරීමට දැනුම්දීම් වලට ඉඩ දෙන්න.</string>
     <string name="perm_exact_body">නියමිත වේලාවටම ඇලාම් නාද වීමට නිවැරදි ඇලාම් වලට ඉඩ දෙන්න.</string>
     <string name="perm_allow">ඉඩ දෙන්න</string>
+
+    <string name="history_title">ඉතිහාසය</string>
+    <string name="history_7_days">දින 7</string>
+    <string name="history_30_days">දින 30</string>
+    <string name="history_all">සියල්ල</string>
+    <string name="history_summary">මාත්‍රා %2$d න් %1$d ක් ගත්තා</string>
+    <string name="history_week_title">මේ සතිය</string>
+    <string name="history_filter_all">සියලුම බෙහෙත්</string>
+    <string name="history_today">අද</string>
+    <string name="history_yesterday">ඊයේ</string>
+    <string name="history_empty_title">තවම ඉතිහාසයක් නැත</string>
+    <string name="history_empty_body">ඔබ ගත්ත සහ මග හැරුණු මාත්‍රා මෙහි පෙනේ.</string>
+    <string name="day_full">සියලු මාත්‍රා ගත්තා</string>
+    <string name="day_partial">සමහර මාත්‍රා මග හැරුණා</string>
+    <string name="day_missed">මාත්‍රා මග හැරුණා</string>
+    <string name="day_none">දත්ත නැත</string>
+    <string name="action_share_report">වාර්තාව බෙදාගන්න</string>
+    <string name="share_dialog_title">වාර්තාවේ භාෂාව</string>
+    <string name="share_dialog_body">වාර්තාව සඳහා භාෂාවක් තෝරන්න. ඔබේ වෛද්‍යවරයා ඉංග්‍රීසියට කැමති විය හැක.</string>
+
+    <string name="report_title">*Medicare බෙහෙත් වාර්තාව*</string>
+    <string name="report_period">කාල සීමාව: %1$s සිට %2$s දක්වා (දින %3$d)</string>
+    <string name="report_adherence">*නිසි ලෙස ගැනීම: %1$d%%*</string>
+    <string name="report_counts">ගත්තා %1$d · මග හැරුණා %2$d · මඟහැරියා %3$d (මාත්‍රා %4$d න්)</string>
+    <string name="report_no_doses">මෙම කාලයේ මාත්‍රා වාර්තා නැත.</string>
+    <string name="report_medicines">*බෙහෙත්*</string>
+    <string name="report_med_line">• %1$s %2$s · %3$s</string>
+    <string name="report_daily">*දෛනික සටහන (අවසන් දින %1$d)*</string>
+    <string name="report_entry">%1$s %2$s %3$s: %4$s</string>
+    <string name="report_footer">Medicare යෙදුමෙන් යැවූවකි. මෙය ස්වයං සටහනක් පමණි, වෛද්‍ය උපදෙසක් නොවේ.</string>
+
+    <plurals name="history_streak">
+        <item quantity="one">දින %d ක් දිගටම</item>
+        <item quantity="other">දින %d ක් දිගටම</item>
+    </plurals>
 </resources>
