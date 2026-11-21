@@ -59,6 +59,9 @@ fun MedicineCard(
         else -> resources.getQuantityString(R.plurals.days_left, daysLeft!!.toInt(), daysLeft.toInt())
     }
 
+    val detailsText = if (medicine.amountPerDose.isNotBlank()) "${medicine.dosage} · ${medicine.amountPerDose}" else medicine.dosage
+    val titleText = if (detailsText.isNotBlank()) "${medicine.name} $detailsText" else medicine.name
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +74,7 @@ fun MedicineCard(
             .padding(16.dp)
     ) {
         Text(
-            text = "${medicine.name} ${medicine.dosage}",
+            text = titleText,
             color = MaterialTheme.colorScheme.onSurface,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
