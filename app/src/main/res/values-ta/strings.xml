@@ -81,23 +81,29 @@
     <string name="form_edit_title">மருந்தைத் திருத்து</string>
     <string name="action_back">பின்செல்</string>
     <string name="action_ok">சரி</string>
-    <string name="action_save">மருந்தைச் சேமி</string>
+    <string name="action_save">சேமி</string>
     <string name="action_got_it">புரிந்தது</string>
     <string name="form_name">மருந்தின் பெயர்</string>
     <string name="form_name_hint">Metformin</string>
-    <string name="form_dosage">அளவு</string>
-    <string name="form_dosage_hint">500 mg · 1 மாத்திரை</string>
+    <string name="form_dosage">அளவு (Strength)</string>
+    <string name="form_dosage_hint">500</string>
+    <string name="form_amount">ஒரு டோஸுக்கு அளவு</string>
+    <string name="form_amount_hint">1</string>
+    <string name="form_dose_unit">வகை</string>
+    <string name="unit_tablet">மாத்திரைகள் (Tablet)</string>
+    <string name="unit_syrup">சிரப் (Syrup ml)</string>
+    <string name="label_take">எடுக்க வேண்டியது: %1$s</string>
     <string name="form_category">இது எதற்காக?</string>
-    <string name="form_when">எப்போது எடுத்துக்கொள்கிறீர்கள்?</string>
+    <string name="form_when">எப்போது எடுக்க வேண்டும்?</string>
     <string name="form_time_for">%1$s நேரம்</string>
-    <string name="form_stock">கையிருப்பு மாத்திரைகள்</string>
-    <string name="form_alert">இதற்குக் கீழ் குறைந்தால் எச்சரிக்கை</string>
-    <string name="form_course">எவ்வளவு காலம் எடுத்துக்கொள்வீர்கள்?</string>
+    <string name="form_stock">கைவசம் உள்ள மாத்திரைகள்</string>
+    <string name="form_alert">குறைந்த எச்சரிக்கை</string>
+    <string name="form_course">எத்தனை நாட்கள்?</string>
     <string name="form_custom_days">நாட்களின் எண்ணிக்கை</string>
-    <string name="form_ends_on">சிகிச்சை முடியும் நாள்: %1$s</string>
+    <string name="form_ends_on">முடிவடையும் நாள் %1$s</string>
     <string name="form_ongoing_note">முடிவு தேதி இல்லை. நீங்கள் நீக்கும் வரை நினைவூட்டல்கள் தொடரும்.</string>
     <string name="error_name">மருந்தின் பெயரை உள்ளிடவும்</string>
-    <string name="error_slots">குறைந்தது ஒரு நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="error_slots">குறைந்தது ஒரு நேரமாவது தேர்ந்தெடுக்கவும்</string>
     <string name="error_number">எண்ணை உள்ளிடவும்</string>
     <string name="error_days">1 முதல் 365 நாட்கள் வரை உள்ளிடவும்</string>
 
@@ -110,29 +116,41 @@
     <string name="course_2w">2 வாரங்கள்</string>
     <string name="course_3w">3 வாரங்கள்</string>
     <string name="course_1m">1 மாதம்</string>
-    <string name="course_custom">வேறு</string>
+    <string name="course_custom">விருப்பத்தேர்வு</string>
     <string name="course_ongoing">தொடர்ந்து</string>
-    <string name="course_completed_on">சிகிச்சை முடிந்தது · %1$s</string>
-    <string name="section_completed">முடிந்த சிகிச்சைகள்</string>
+    <string name="course_completed_on">முடிவடைந்தது · %1$s</string>
+    <string name="section_completed">முடிந்தவை</string>
 
     <string name="cat_diabetes">நீரிழிவு</string>
     <string name="cat_blood_pressure">இரத்த அழுத்தம்</string>
-    <string name="cat_cholesterol">கொலஸ்ட்ரால்</string>
+    <string name="cat_cholesterol">கொலஸ்ட்ரాల్</string>
     <string name="cat_heart">இதயம்</string>
     <string name="cat_infection">தொற்று</string>
     <string name="cat_cold_fever">சளி மற்றும் காய்ச்சல்</string>
     <string name="cat_pain">வலி</string>
     <string name="cat_stomach">வயிறு</string>
-    <string name="cat_vitamins">வைட்டமின்கள்</string>
-    <string name="cat_other">மற்றவை</string>
+    <string name="cat_vitamins">விட்டமின்கள்</string>
+    <string name="cat_other">অন্যান্য</string>
 
-    <string name="home_empty_title">இன்று எடுக்க மருந்து இல்லை</string>
-    <string name="home_empty_body">ஒரு மருந்தைச் சேருங்கள், Medicare சரியான நேரத்தில் நினைவூட்டும்.</string>
-    <string name="home_complete_title">சிகிச்சை முடிந்தது!</string>
-    <string name="home_complete_body">%1$s சிகிச்சையை முடித்துவிட்டீர்கள். ஒவ்வொரு டோஸும் முக்கியம். உங்களை நன்றாகக் கவனித்துக்கொண்டதற்குப் பாராட்டுகள், உங்கள் உடல் உங்களுக்கு நன்றி சொல்லும்.</string>
+    <string name="home_empty_title">இன்று எடுக்க ஒன்றும் இல்லை</string>
+    <string name="home_empty_body">மருந்தைச் சேர்க்கவும், Medicare சரியான நேரத்தில் நினைவூட்டும்.</string>
+    <string name="home_complete_title">பாடநெறி முடிந்தது!</string>
+    <string name="home_complete_body">உங்கள் %1$s பாடநெறி முடிந்தது. நன்றாக கவனித்துக் கொண்டீர்கள்.</string>
 
     <plurals name="days_left">
-        <item quantity="one">இன்னும் %d நாள்</item>
-        <item quantity="other">இன்னும் %d நாட்கள்</item>
+        <item quantity="one">%d நாள் மீதம்</item>
+        <item quantity="other">%d நாட்கள் மீதம்</item>
     </plurals>
+
+    <string name="reminder_title">மருந்து எடுக்கும் நேரம்</string>
+    <string name="action_snooze">10 நிமிடம் ஒத்திவை</string>
+    <string name="channel_reminders">மருந்து நினைவூட்டல்கள்</string>
+    <string name="channel_reminders_desc">மருந்து எடுக்க வேண்டிய நேரத்தில் அலாரம்</string>
+    <string name="channel_stock">இருப்பு குறைவு எச்சரிக்கைகள்</string>
+    <string name="channel_stock_desc">மருந்து தீரும் நிலையில் இருக்கும்போது</string>
+    <string name="notif_low_stock_title">மருந்து தீரப்போகிறது</string>
+    <string name="perm_title">நினைவூட்டல்களை இயக்குங்கள்</string>
+    <string name="perm_notifications_body">Medicare உங்களுக்கு நினைவூட்ட அறிவிப்புகளை அனுமதிக்கவும்.</string>
+    <string name="perm_exact_body">சரியான நேரத்தில் ஒலிக்க துல்லியமான அலாரங்களை அனுமதிக்கவும்.</string>
+    <string name="perm_allow">அனுமதி</string>
 </resources>
