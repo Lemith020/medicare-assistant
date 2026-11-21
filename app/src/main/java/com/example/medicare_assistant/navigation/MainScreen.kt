@@ -45,6 +45,7 @@ import com.example.medicare_assistant.settings.SettingsScreen
 import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
 import com.example.medicare_assistant.reminder.ReminderPermissionBanner
+import com.example.medicare_assistant.history.HistoryScreen
 
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
@@ -93,7 +94,7 @@ fun MainScreen() {
                         onAddClick = { openForm(null) },
                         onEditClick = { openForm(it) }
                     )
-                    MainTab.HISTORY -> PlaceholderScreen(R.string.nav_history)
+                    MainTab.HISTORY -> HistoryScreen()
                     MainTab.SETTINGS -> SettingsScreen()
                 }
             }
@@ -134,24 +135,5 @@ private fun BottomBar(selected: MainTab, onSelect: (MainTab) -> Unit) {
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun PlaceholderScreen(@StringRes title: Int) {
-    Column(Modifier.fillMaxSize().padding(20.dp)) {
-        Text(
-            text = stringResource(title),
-            modifier = Modifier.semantics { heading() },
-            color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            text = stringResource(R.string.coming_soon),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 18.sp
-        )
     }
 }
