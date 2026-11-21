@@ -30,6 +30,7 @@ data class Medicine(
     val id: Long,
     val name: String,
     val dosage: String,
+    val amountPerDose: String = "",
     val category: MedicineCategory,
     val times: Map<DoseSlot, LocalTime>,
     val stock: Int,
