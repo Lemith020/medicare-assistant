@@ -3,6 +3,7 @@ package com.example.medicare_assistant.medicine
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.medicare_assistant.reminder.ReminderScheduler
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -16,6 +17,9 @@ class MedicineViewModel(app: Application) : AndroidViewModel(app) {
         repo.medicines.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     fun delete(id: Long) {
-        viewModelScope.launch { repo.delete(id) }
+        viewModelScope.launch {
+            ReminderScheduler.cancel(getApplication(), id)
+            repo.delete(id)
+        }
     }
 }
