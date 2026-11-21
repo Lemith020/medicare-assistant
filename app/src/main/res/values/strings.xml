@@ -155,4 +155,39 @@
     <string name="perm_exact_body">Allow exact alarms so reminders ring on time.</string>
     <string name="perm_allow">Allow</string>
 
+    <string name="history_title">History</string>
+    <string name="history_7_days">7 days</string>
+    <string name="history_30_days">30 days</string>
+    <string name="history_all">All</string>
+    <string name="history_summary">%1$d of %2$d doses taken</string>
+    <string name="history_week_title">This week</string>
+    <string name="history_filter_all">All medicines</string>
+    <string name="history_today">Today</string>
+    <string name="history_yesterday">Yesterday</string>
+    <string name="history_empty_title">No history yet</string>
+    <string name="history_empty_body">Your taken and missed doses will appear here.</string>
+    <string name="day_full">all doses taken</string>
+    <string name="day_partial">some doses missed</string>
+    <string name="day_missed">doses missed</string>
+    <string name="day_none">no data</string>
+    <string name="action_share_report">Share report</string>
+    <string name="share_dialog_title">Report language</string>
+    <string name="share_dialog_body">Choose the language for the report. Your doctor may prefer English.</string>
+
+    <string name="report_title">*Medicare medicine report*</string>
+    <string name="report_period">Period: %1$s to %2$s (%3$d days)</string>
+    <string name="report_adherence">*Adherence: %1$d%%*</string>
+    <string name="report_counts">Taken %1$d · Missed %2$d · Skipped %3$d (of %4$d doses)</string>
+    <string name="report_no_doses">No doses recorded in this period.</string>
+    <string name="report_medicines">*Medicines*</string>
+    <string name="report_med_line">• %1$s %2$s · %3$s</string>
+    <string name="report_daily">*Daily log (last %1$d days)*</string>
+    <string name="report_entry">%1$s %2$s %3$s: %4$s</string>
+    <string name="report_footer">Sent from the Medicare app. This is a self-reported log and not medical advice.</string>
+
+    <plurals name="history_streak">
+        <item quantity="one">%d day in a row</item>
+        <item quantity="other">%d days in a row</item>
+    </plurals>
+
 </resources>
