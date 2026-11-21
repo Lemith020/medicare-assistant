@@ -85,8 +85,15 @@
     <string name="action_got_it">Got it</string>
     <string name="form_name">Medicine name</string>
     <string name="form_name_hint">Metformin</string>
-    <string name="form_dosage">Dosage</string>
-    <string name="form_dosage_hint">500 mg · 1 tablet</string>
+    <string name="form_dosage">Dosage strength</string>
+    <string name="form_dosage_hint">500</string>
+    <string name="form_amount">Amount per dose</string>
+    <string name="form_amount_hint">1</string>
+    <string name="form_dose_unit">Form</string>
+    <string name="unit_tablet">Tablet(s)</string>
+    <string name="unit_syrup">Syrup (ml)</string>
+    <string name="label_take">Take: %1$s</string>
+
     <string name="form_category">What is it for?</string>
     <string name="form_when">When do you take it?</string>
     <string name="form_time_for">%1$s time</string>
@@ -135,5 +142,17 @@
         <item quantity="one">%d day left</item>
         <item quantity="other">%d days left</item>
     </plurals>
+
+    <string name="reminder_title">Time for your medicine</string>
+    <string name="action_snooze">Snooze 10 min</string>
+    <string name="channel_reminders">Medicine reminders</string>
+    <string name="channel_reminders_desc">Alarms at the times you take your medicines</string>
+    <string name="channel_stock">Low stock alerts</string>
+    <string name="channel_stock_desc">When a medicine is running out</string>
+    <string name="notif_low_stock_title">Medicine running low</string>
+    <string name="perm_title">Turn on reminders</string>
+    <string name="perm_notifications_body">Allow notifications so Medicare can remind you.</string>
+    <string name="perm_exact_body">Allow exact alarms so reminders ring on time.</string>
+    <string name="perm_allow">Allow</string>
 
 </resources>
