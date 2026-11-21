@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medicare_assistant.R
+import com.example.medicare_assistant.dose.DoseStatus
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -96,8 +97,8 @@ private fun HomeContent(
             next != null -> NextDoseCard(
                 dose = next,
                 locale = locale,
-                onTaken = { viewModel.mark(next.key, DoseStatus.TAKEN) },
-                onSkip = { viewModel.mark(next.key, DoseStatus.SKIPPED) }
+                onTaken = { viewModel.mark(next, DoseStatus.TAKEN) },
+                onSkip = { viewModel.mark(next, DoseStatus.SKIPPED) }
             )
             else -> AllDoneCard()
         }

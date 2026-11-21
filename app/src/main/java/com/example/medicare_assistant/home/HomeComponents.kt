@@ -35,6 +35,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.Locale
+import com.example.medicare_assistant.dose.DoseStatus
 
 fun formatTime(time: LocalTime, locale: Locale): String =
     time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale))
@@ -48,6 +49,7 @@ fun NextDoseCard(
 ) {
     val takenDescription = stringResource(R.string.action_taken_for, dose.name)
     val skipDescription = stringResource(R.string.action_skip_for, dose.name)
+    val detailsText = if (dose.amountPerDose.isNotBlank()) "${dose.dosage} · ${dose.amountPerDose}" else dose.dosage
 
     Column(
         modifier = Modifier
@@ -63,7 +65,9 @@ fun NextDoseCard(
         )
         Spacer(Modifier.height(4.dp))
         Text(text = dose.name, color = Ink, fontSize = 26.sp, fontWeight = FontWeight.Bold)
-        Text(text = dose.dosage, color = Ink, fontSize = 18.sp)
+        if (detailsText.isNotBlank()) {
+            Text(text = detailsText, color = Ink, fontSize = 18.sp)
+        }
         Spacer(Modifier.height(14.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Button(
@@ -132,6 +136,9 @@ fun LowStockBanner(name: String, count: Int) {
 @Composable
 fun DoseRow(dose: Dose, locale: Locale) {
     val shape = RoundedCornerShape(18.dp)
+    val detailsText = if (dose.amountPerDose.isNotBlank()) "${dose.dosage} · ${dose.amountPerDose}" else dose.dosage
+    val titleText = if (detailsText.isNotBlank()) "${dose.name} $detailsText" else dose.name
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -144,7 +151,7 @@ fun DoseRow(dose: Dose, locale: Locale) {
     ) {
         Column(Modifier.weight(1f)) {
             Text(
-                text = "${dose.name} ${dose.dosage}",
+                text = titleText,
                 color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
