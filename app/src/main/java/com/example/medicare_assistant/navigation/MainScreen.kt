@@ -44,6 +44,7 @@ import com.example.medicare_assistant.medicine.MedicinesScreen
 import com.example.medicare_assistant.settings.SettingsScreen
 import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
+import com.example.medicare_assistant.reminder.ReminderPermissionBanner
 
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
@@ -84,6 +85,7 @@ fun MainScreen() {
                 .background(MaterialTheme.colorScheme.background)
                 .systemBarsPadding()
         ) {
+            ReminderPermissionBanner()
             Box(Modifier.weight(1f)) {
                 when (tab) {
                     MainTab.TODAY -> HomeScreen(onAddMedicine = { openForm(null) })
