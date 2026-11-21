@@ -22,6 +22,11 @@ import com.example.medicare_assistant.settings.LocalizedApp
 import com.example.medicare_assistant.settings.SettingsViewModel
 import com.example.medicare_assistant.settings.ThemeMode
 import com.example.medicare_assistant.ui.theme.MedicareTheme
+import androidx.lifecycle.lifecycleScope
+import com.example.medicare_assistant.medicine.MedicineRepository
+import com.example.medicare_assistant.reminder.ReminderScheduler
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +57,18 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            ReminderScheduler.scheduleAll(
+                applicationContext,
+                MedicineRepository.get(applicationContext).medicines.first()
+            )
+        }
+    }
 }
+
+
 
 @Composable
 private fun SystemBars(dark: Boolean) {
