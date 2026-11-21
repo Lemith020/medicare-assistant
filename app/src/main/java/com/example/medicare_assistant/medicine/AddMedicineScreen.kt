@@ -122,7 +122,36 @@ fun AddMedicineScreen(
                     value = state.dosage,
                     onValueChange = viewModel::onDosageChange,
                     placeholder = stringResource(R.string.form_dosage_hint),
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    )
+                )
+                Spacer(Modifier.height(14.dp))
+                SectionTitle(stringResource(R.string.form_dose_unit))
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    DoseUnit.entries.forEach { unit ->
+                        ChoiceChip(
+                            label = stringResource(unit.labelRes),
+                            selected = state.doseUnit == unit,
+                            onClick = { viewModel.onDoseUnitChange(unit) },
+                            role = Role.RadioButton
+                        )
+                    }
+                }
+                Spacer(Modifier.height(14.dp))
+                AppTextField(
+                    label = stringResource(R.string.form_amount),
+                    value = state.doseQuantity,
+                    onValueChange = viewModel::onDoseQuantityChange,
+                    placeholder = stringResource(R.string.form_amount_hint),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Done
+                    )
                 )
             }
 
