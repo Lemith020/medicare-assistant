@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalTime
+import com.example.medicare_assistant.reminder.ReminderScheduler
 
 enum class CourseDuration(@StringRes val labelRes: Int, val days: Int?) {
     WEEK_1(R.string.course_1w, 7),
@@ -23,9 +24,16 @@ enum class CourseDuration(@StringRes val labelRes: Int, val days: Int?) {
     ONGOING(R.string.course_ongoing, null)
 }
 
+enum class DoseUnit(@StringRes val labelRes: Int) {
+    TABLET(R.string.unit_tablet),
+    SYRUP(R.string.unit_syrup)
+}
+
 data class AddMedicineState(
     val name: String = "",
-    val dosage: String = "",
+    val dosage: String = "", // e.g. "500"
+    val doseUnit: DoseUnit = DoseUnit.TABLET,
+    val doseQuantity: String = "1",
     val category: MedicineCategory = MedicineCategory.OTHER,
     val times: Map<DoseSlot, LocalTime> = mapOf(
         DoseSlot.MORNING to DoseSlot.MORNING.defaultTime,
@@ -47,6 +55,18 @@ data class AddMedicineState(
             CourseDuration.CUSTOM -> customDays.toIntOrNull()
             CourseDuration.ONGOING -> null
             else -> duration.days
+        }
+
+    val amountPerDose: String
+        get() {
+            val q = doseQuantity.filter(Char::isDigit).ifBlank { "1" }
+            return when (doseUnit) {
+                DoseUnit.TABLET -> {
+                    val num = q.toIntOrNull() ?: 1
+                    if (num > 1) "$num tablets" else "$num tablet"
+                }
+                DoseUnit.SYRUP -> "$q ml"
+            }
         }
 }
 
@@ -72,7 +92,11 @@ class AddMedicineViewModel(app: Application) : AndroidViewModel(app) {
 
     fun onNameChange(value: String) = _state.update { it.copy(name = value, nameError = null) }
 
-    fun onDosageChange(value: String) = _state.update { it.copy(dosage = value) }
+    fun onDosageChange(value: String) = _state.update { it.copy(dosage = value.filter(Char::isDigit).take(5)) }
+
+    fun onDoseUnitChange(unit: DoseUnit) = _state.update { it.copy(doseUnit = unit) }
+
+    fun onDoseQuantityChange(value: String) = _state.update { it.copy(doseQuantity = value.filter(Char::isDigit).take(3)) }
 
     fun onCategoryChange(value: MedicineCategory) = _state.update { it.copy(category = value) }
 
@@ -119,11 +143,15 @@ class AddMedicineViewModel(app: Application) : AndroidViewModel(app) {
 
         if (listOf(nameError, slotsError, stockError, thresholdError, daysError).any { it != null }) return
 
+        val rawDosage = s.dosage.trim().removeSuffix(" mg").removeSuffix("mg")
+        val formattedDosage = if (rawDosage.isNotBlank()) "$rawDosage mg" else ""
+
         val old = existing
         val medicine = Medicine(
             id = old?.id ?: System.currentTimeMillis(),
             name = s.name.trim(),
-            dosage = s.dosage.trim(),
+            dosage = formattedDosage,
+            amountPerDose = s.amountPerDose,
             category = s.category,
             times = s.times,
             stock = stock!!,
@@ -135,6 +163,7 @@ class AddMedicineViewModel(app: Application) : AndroidViewModel(app) {
 
         viewModelScope.launch {
             if (old != null) repo.update(medicine) else repo.add(medicine)
+            ReminderScheduler.schedule(getApplication(), medicine)
             onSaved()
         }
     }
@@ -147,9 +176,15 @@ private fun Medicine.toFormState(): AddMedicineState {
         preset != null -> preset
         else -> CourseDuration.CUSTOM
     }
+    val unit = if (amountPerDose.contains("ml", ignoreCase = true)) DoseUnit.SYRUP else DoseUnit.TABLET
+    val qtyDigits = amountPerDose.filter(Char::isDigit).ifBlank { "1" }
+    val rawDosage = dosage.removeSuffix(" mg").removeSuffix("mg").trim()
+
     return AddMedicineState(
         name = name,
-        dosage = dosage,
+        dosage = rawDosage,
+        doseUnit = unit,
+        doseQuantity = qtyDigits,
         category = category,
         times = times,
         stock = stock.toString(),
