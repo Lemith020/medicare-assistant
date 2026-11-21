@@ -29,6 +29,16 @@ class MedicineRepository private constructor(private val context: Context) {
         list.map { if (it.id == id) it.copy(completionDismissed = true) else it }
     }
 
+    suspend fun decrementStock(id: Long): Medicine? {
+        var updated: Medicine? = null
+        modify { list ->
+            list.map {
+                if (it.id == id) it.copy(stock = (it.stock - 1).coerceAtLeast(0)).also { m -> updated = m } else it
+            }
+        }
+        return updated
+    }
+
     private suspend fun modify(transform: (List<Medicine>) -> List<Medicine>) {
         context.appDataStore.edit { prefs ->
             prefs[key] = encode(transform(decode(prefs[key])))
@@ -64,6 +74,7 @@ private fun Medicine.toJson(): JSONObject = JSONObject().apply {
     put("id", id)
     put("name", name)
     put("dosage", dosage)
+    put("amount", amountPerDose)
     put("category", category.name)
     put("times", JSONObject().apply { times.forEach { (slot, time) -> put(slot.name, time.toString()) } })
     put("stock", stock)
@@ -83,6 +94,7 @@ private fun JSONObject.toMedicine(): Medicine {
         id = getLong("id"),
         name = getString("name"),
         dosage = getString("dosage"),
+        amountPerDose = optString("amount", ""),
         category = MedicineCategory.entries.firstOrNull { it.name == optString("category") }
             ?: MedicineCategory.OTHER,
         times = times,
