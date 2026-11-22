@@ -238,4 +238,26 @@
     <string name="location_error_disabled">ස්ථාන සේවාව (GPS) සක්‍රිය කර නැවත උත්සාහ කරන්න.</string>
     <string name="location_error_failed">ස්ථානය ලබාගත නොහැකි විය. විවෘත ස්ථානයක සිට නැවත උත්සාහ කරන්න.</string>
     <string name="profile_open">පැතිකඩ විවෘත කරන්න</string>
+
+    <string name="allergy_subtitle">ඔබේ ලැයිස්තුවට ගැළපෙන බෙහෙතක් එක් කළොත් Medicare ඔබට අවවාද කරයි.</string>
+    <string name="allergy_name_label">බෙහෙතේ නම</string>
+    <string name="allergy_name_hint">උදා: Penicillin</string>
+    <string name="allergy_reaction">ප්‍රතික්‍රියාව: %1$s</string>
+    <string name="allergy_add_reaction">ප්‍රතික්‍රියාවක් එක් කිරීමට ඔබන්න</string>
+    <string name="action_remove">ඉවත් කරන්න</string>
+    <string name="action_save_short">සුරකින්න</string>
+    <string name="allergy_remove_title">අසාත්මිකතාව ඉවත් කරන්නද?</string>
+    <string name="allergy_remove_message">%1$s ඔබේ අසාත්මික ලැයිස්තුවෙන් ඉවත් කරන්නද?</string>
+    <string name="allergy_reaction_title">%1$s සඳහා ප්‍රතික්‍රියාව</string>
+    <string name="allergy_reaction_label">ප්‍රතික්‍රියාව (අත්‍යවශ්‍ය නොවේ)</string>
+    <string name="allergy_reaction_hint">උදා: ශරීරයේ කැසීම</string>
+    <string name="allergy_error_empty">බෙහෙතේ නම ඇතුළත් කරන්න</string>
+    <string name="allergy_error_duplicate">දැනටමත් ඔබේ ලැයිස්තුවේ ඇත</string>
+    <string name="allergy_preview_label">බෙහෙතක් එක් කරද්දී පෙන්වන අවවාදය</string>
+    <string name="allergy_warning_title">අසාත්මික විය හැක: %1$s</string>
+    <string name="allergy_warning_body">මෙම නම ඔබේ අසාත්මික ලැයිස්තුවට ගැළපෙයි. ගැනීමට පෙර වෛද්‍යවරයාගෙන් අසන්න.</string>
+    <string name="allergy_edit_reaction_desc">%1$s සඳහා ප්‍රතික්‍රියාව සංස්කරණය කරන්න</string>
+    <string name="allergy_remove_desc">%1$s ඉවත් කරන්න</string>
+
+    
 </resources>
