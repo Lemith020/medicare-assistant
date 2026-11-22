@@ -233,4 +233,11 @@
     <string name="edit_error_name">Enter your name</string>
     <string name="edit_error_age">Enter an age from 1 to 120</string>
     <string name="edit_error_phone">Enter a valid phone number</string>
+
+    <string name="edit_error_no_camera">No camera app found</string>
+    <string name="profile_locating">Getting location…</string>
+    <string name="location_error_permission">Location permission is needed. Allow it in the phone settings.</string>
+    <string name="location_error_disabled">Turn on location (GPS) and try again.</string>
+    <string name="location_error_failed">Couldn’t get your location. Try again outdoors.</string>
+    <string name="profile_open">Open profile</string>
 </resources>
