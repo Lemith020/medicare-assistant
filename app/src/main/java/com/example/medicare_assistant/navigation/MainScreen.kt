@@ -52,6 +52,7 @@ import com.example.medicare_assistant.settings.SettingsScreen
 import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
 import com.example.medicare_assistant.profile.logic.EditProfileRoute
+import com.example.medicare_assistant.profile.logic.AllergiesRoute
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
     MEDICINES(R.string.nav_medicines),
@@ -111,8 +112,8 @@ fun MainScreen() {
         )
 
         // ===== [Allergies page] තාවකාලික (Step 7 එකේදී ඇත්ත page එක) =====
-        Overlay.ALLERGIES -> ComingSoonPage(
-            title = R.string.profile_allergies,
+        // ===== [Allergies page] Back → Profile page එකට =====
+        Overlay.ALLERGIES -> AllergiesRoute(
             onBack = { overlay = Overlay.PROFILE }
         )
 
