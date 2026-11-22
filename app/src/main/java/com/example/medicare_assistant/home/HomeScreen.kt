@@ -38,6 +38,7 @@ fun HomeScreen(
     onAddMedicine: () -> Unit,
     onOpenProfile: () -> Unit,
     avatarInitial: String?,
+    avatarPhotoPath: String? = null,
     viewModel: HomeViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -51,6 +52,7 @@ fun HomeScreen(
             onAddMedicine = onAddMedicine,
             onOpenProfile = onOpenProfile,
             avatarInitial = avatarInitial,
+            avatarPhotoPath = avatarPhotoPath,
             viewModel = viewModel
         )
     }
@@ -62,6 +64,7 @@ private fun HomeContent(
     onAddMedicine: () -> Unit,
     onOpenProfile: () -> Unit,
     avatarInitial: String?,
+    avatarPhotoPath: String?,
     viewModel: HomeViewModel
 ) {
     val locale = LocalConfiguration.current.locales[0]
@@ -110,7 +113,12 @@ private fun HomeContent(
                     )
                 }
             }
-            ProfileAvatar(initial = avatarInitial, contentDescription = "Profile", onClick = onOpenProfile)
+            ProfileAvatar(
+                initial = avatarInitial,
+                photoPath = avatarPhotoPath,
+                contentDescription = stringResource(R.string.profile_open),
+                onClick = onOpenProfile
+            )
         }
 
         state.completed.forEach { medicine ->
