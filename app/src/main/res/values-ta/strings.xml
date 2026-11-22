@@ -231,4 +231,11 @@
     <string name="edit_error_name">உங்கள் பெயரை உள்ளிடவும்</string>
     <string name="edit_error_age">வயதை 1 முதல் 120 வரை உள்ளிடவும்</string>
     <string name="edit_error_phone">சரியான தொலைபேசி எண்ணை உள்ளிடவும்</string>
+
+    <string name="edit_error_no_camera">கேமரா பயன்பாடு எதுவும் இல்லை</string>
+    <string name="profile_locating">இடத்தைப் பெறுகிறது…</string>
+    <string name="location_error_permission">இடத்தைப் பெற அனுமதி தேவை. தொலைபேசி அமைப்புகளில் அனுமதியுங்கள்.</string>
+    <string name="location_error_disabled">இட சேவையை (GPS) இயக்கி மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="location_error_failed">இடத்தைப் பெற முடியவில்லை. திறந்த வெளியில் மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="profile_open">சுயவிவரத்தைத் திற</string>
 </resources>
