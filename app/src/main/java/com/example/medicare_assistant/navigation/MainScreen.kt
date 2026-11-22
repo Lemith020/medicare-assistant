@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,16 +38,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medicare_assistant.R
+import com.example.medicare_assistant.history.HistoryScreen
 import com.example.medicare_assistant.home.HomeScreen
 import com.example.medicare_assistant.medicine.AddMedicineScreen
 import com.example.medicare_assistant.medicine.MedicinesScreen
+import com.example.medicare_assistant.profile.logic.ProfileRoute
+import com.example.medicare_assistant.profile.logic.ProfileViewModel
+import com.example.medicare_assistant.profile.view.components.PageTopBar
+import com.example.medicare_assistant.reminder.ReminderPermissionBanner
 import com.example.medicare_assistant.settings.SettingsScreen
 import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
-import com.example.medicare_assistant.reminder.ReminderPermissionBanner
-import com.example.medicare_assistant.history.HistoryScreen
-
+import com.example.medicare_assistant.profile.logic.EditProfileRoute
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
     MEDICINES(R.string.nav_medicines),
@@ -57,30 +62,62 @@ enum class MainTab(@StringRes val labelRes: Int) {
 @Composable
 fun MainScreen() {
     var tab by rememberSaveable { mutableStateOf(MainTab.TODAY) }
-    var adding by rememberSaveable { mutableStateOf(false) }
+    var overlay by rememberSaveable { mutableStateOf(Overlay.NONE) }
     var editId by rememberSaveable { mutableStateOf<Long?>(null) }
     var formKey by rememberSaveable { mutableIntStateOf(0) }
+
+    val profileViewModel: ProfileViewModel = viewModel()
+    val profile by profileViewModel.state.collectAsState()
 
     fun openForm(id: Long?) {
         editId = id
         formKey += 1
-        adding = true
+        overlay = Overlay.ADD_MEDICINE
     }
 
-    BackHandler(enabled = adding) { adding = false }
+    // ===== [Back gesture] overlay page එකක ඉන්නකොට parent page එකට යනවා =====
+    BackHandler(enabled = overlay != Overlay.NONE) {
+        overlay = overlay.parent ?: Overlay.NONE
+    }
 
-    if (adding) {
-        AddMedicineScreen(
+    when (overlay) {
+
+        // ===== [Add / Edit medicine page] =====
+        Overlay.ADD_MEDICINE -> AddMedicineScreen(
             editId = editId,
             formKey = formKey,
-            onBack = { adding = false },
+            onBack = { overlay = Overlay.NONE },
             onSaved = {
-                adding = false
+                overlay = Overlay.NONE
                 tab = MainTab.MEDICINES
             }
         )
-    } else {
-        Column(
+
+        // ===== [Profile page] Edit → EDIT_PROFILE (අලුත් form එකක්), "+ Add" allergy → ALLERGIES =====
+        Overlay.PROFILE -> ProfileRoute(
+            onBack = { overlay = Overlay.NONE },
+            onEdit = {
+                formKey += 1
+                overlay = Overlay.EDIT_PROFILE
+            },
+            onOpenAllergies = { overlay = Overlay.ALLERGIES }
+        )
+
+        // ===== [Edit profile page] Save කළාම / Back ඔබපුවාම Profile page එකට =====
+        Overlay.EDIT_PROFILE -> EditProfileRoute(
+            formKey = formKey,
+            onBack = { overlay = Overlay.PROFILE },
+            onSaved = { overlay = Overlay.PROFILE }
+        )
+
+        // ===== [Allergies page] තාවකාලික (Step 7 එකේදී ඇත්ත page එක) =====
+        Overlay.ALLERGIES -> ComingSoonPage(
+            title = R.string.profile_allergies,
+            onBack = { overlay = Overlay.PROFILE }
+        )
+
+        // ===== [Main tabs] Today / Medicines / History / Settings =====
+        Overlay.NONE -> Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
@@ -89,7 +126,11 @@ fun MainScreen() {
             ReminderPermissionBanner()
             Box(Modifier.weight(1f)) {
                 when (tab) {
-                    MainTab.TODAY -> HomeScreen(onAddMedicine = { openForm(null) })
+                    MainTab.TODAY -> HomeScreen(
+                        onAddMedicine = { openForm(null) },
+                        onOpenProfile = { overlay = Overlay.PROFILE },
+                        avatarInitial = profile.initial
+                    )
                     MainTab.MEDICINES -> MedicinesScreen(
                         onAddClick = { openForm(null) },
                         onEditClick = { openForm(it) }
@@ -135,5 +176,32 @@ private fun BottomBar(selected: MainTab, onSelect: (MainTab) -> Unit) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun ComingSoonPage(@StringRes title: Int, onBack: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .systemBarsPadding()
+            .padding(20.dp)
+    ) {
+        PageTopBar(onBack = onBack)
+        Spacer(Modifier.height(16.dp))
+        Text(
+            text = stringResource(title),
+            modifier = Modifier.semantics { heading() },
+            color = MaterialTheme.colorScheme.onBackground,
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(Modifier.height(8.dp))
+        Text(
+            text = stringResource(R.string.coming_soon),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontSize = 18.sp
+        )
     }
 }
