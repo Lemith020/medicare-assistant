@@ -231,4 +231,11 @@
     <string name="edit_error_name">ඔබේ නම ඇතුළත් කරන්න</string>
     <string name="edit_error_age">වයස 1 සිට 120 දක්වා ඇතුළත් කරන්න</string>
     <string name="edit_error_phone">නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න</string>
+
+    <string name="edit_error_no_camera">කැමරා යෙදුමක් හමු නොවීය</string>
+    <string name="profile_locating">ස්ථානය ලබාගනිමින්…</string>
+    <string name="location_error_permission">ස්ථානය ලබාගැනීමට අවසරය අවශ්‍යයි. දුරකථනයේ settings වලින් අවසර දෙන්න.</string>
+    <string name="location_error_disabled">ස්ථාන සේවාව (GPS) සක්‍රිය කර නැවත උත්සාහ කරන්න.</string>
+    <string name="location_error_failed">ස්ථානය ලබාගත නොහැකි විය. විවෘත ස්ථානයක සිට නැවත උත්සාහ කරන්න.</string>
+    <string name="profile_open">පැතිකඩ විවෘත කරන්න</string>
 </resources>
