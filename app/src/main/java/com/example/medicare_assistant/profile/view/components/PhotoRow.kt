@@ -23,6 +23,7 @@ import com.example.medicare_assistant.ui.components.ProfileAvatar
 @Composable
 fun PhotoRow(
     initial: String?,
+    photoPath: String?,
     onTakePhoto: () -> Unit,
     onChoosePhoto: () -> Unit,
     modifier: Modifier = Modifier
@@ -34,6 +35,7 @@ fun PhotoRow(
     ) {
         ProfileAvatar(
             initial = initial,
+            photoPath = photoPath,
             contentDescription = stringResource(R.string.edit_photo_desc),
             diameter = 84.dp
         )
