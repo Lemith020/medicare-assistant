@@ -2,15 +2,19 @@ package com.example.medicare_assistant.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -19,9 +23,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medicare_assistant.R
 import com.example.medicare_assistant.dose.DoseStatus
+import com.example.medicare_assistant.ui.components.ProfileAvatar
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -29,11 +36,23 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun HomeScreen(
     onAddMedicine: () -> Unit,
+    onOpenProfile: () -> Unit,
+    avatarInitial: String?,
     viewModel: HomeViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(Unit) { viewModel.refresh() }
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.refresh() }
+
     if (state.loaded) {
-        HomeContent(state = state, onAddMedicine = onAddMedicine, viewModel = viewModel)
+        HomeContent(
+            state = state,
+            onAddMedicine = onAddMedicine,
+            onOpenProfile = onOpenProfile,
+            avatarInitial = avatarInitial,
+            viewModel = viewModel
+        )
     }
 }
 
@@ -41,6 +60,8 @@ fun HomeScreen(
 private fun HomeContent(
     state: HomeState,
     onAddMedicine: () -> Unit,
+    onOpenProfile: () -> Unit,
+    avatarInitial: String?,
     viewModel: HomeViewModel
 ) {
     val locale = LocalConfiguration.current.locales[0]
@@ -63,26 +84,33 @@ private fun HomeContent(
             .padding(horizontal = 20.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Column {
-            Text(
-                text = date,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 16.sp
-            )
-            Text(
-                text = stringResource(greeting),
-                modifier = Modifier.semantics { heading() },
-                color = MaterialTheme.colorScheme.onBackground,
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold
-            )
-            if (doses.isNotEmpty()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = stringResource(R.string.home_subtitle, takenCount, doses.size),
+                    text = date,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 16.sp
                 )
+                Text(
+                    text = stringResource(greeting),
+                    modifier = Modifier.semantics { heading() },
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                if (doses.isNotEmpty()) {
+                    Text(
+                        text = stringResource(R.string.home_subtitle, takenCount, doses.size),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 16.sp
+                    )
+                }
             }
+            ProfileAvatar(initial = avatarInitial, contentDescription = "Profile", onClick = onOpenProfile)
         }
 
         state.completed.forEach { medicine ->
