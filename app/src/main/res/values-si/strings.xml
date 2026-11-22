@@ -114,7 +114,7 @@
 
     <string name="course_1w">සතියයි</string>
     <string name="course_2w">සති 2යි</string>
-    <string name="course_3w">3 සති</string>
+    <string name="course_3w">සති 3යි</string>
     <string name="course_1m">මාසයයි</string>
     <string name="course_custom">විශේෂිත</string>
     <string name="course_ongoing">දිගටම</string>
@@ -142,50 +142,93 @@
         <item quantity="other">දින %d ක් ඉතිරියි</item>
     </plurals>
 
-    <string name="reminder_title">බෙහෙත් ගන්න වෙලාවයි</string>
-    <string name="action_snooze">මිනිත්තු 10කින් මතක් කරන්න</string>
-    <string name="channel_reminders">බෙහෙත් මතක් කිරීම්</string>
-    <string name="channel_reminders_desc">බෙහෙත් ගත යුතු වේලාවන්හි ඇලාම්</string>
-    <string name="channel_stock">තොග අඩු වීමේ දැනුම්දීම්</string>
-    <string name="channel_stock_desc">බෙහෙත් අවසන් වෙමින් පවතින විට</string>
-    <string name="notif_low_stock_title">බෙහෙත් අවසන් වෙමින්</string>
-    <string name="perm_title">මතක් කිරීම් සක්‍රිය කරන්න</string>
-    <string name="perm_notifications_body">Medicare ට ඔබට මතක් කිරීමට දැනුම්දීම් වලට ඉඩ දෙන්න.</string>
-    <string name="perm_exact_body">නියමිත වේලාවටම ඇලාම් නාද වීමට නිවැරදි ඇලාම් වලට ඉඩ දෙන්න.</string>
-    <string name="perm_allow">ඉඩ දෙන්න</string>
+    <string name="reminder_title">Time for your medicine</string>
+    <string name="action_snooze">Snooze 10 min</string>
+    <string name="channel_reminders">Medicine reminders</string>
+    <string name="channel_reminders_desc">Alarms at the times you take your medicines</string>
+    <string name="channel_stock">Low stock alerts</string>
+    <string name="channel_stock_desc">When a medicine is running out</string>
+    <string name="notif_low_stock_title">Medicine running low</string>
+    <string name="perm_title">Turn on reminders</string>
+    <string name="perm_notifications_body">Allow notifications so Medicare can remind you.</string>
+    <string name="perm_exact_body">Allow exact alarms so reminders ring on time.</string>
+    <string name="perm_allow">Allow</string>
 
-    <string name="history_title">ඉතිහාසය</string>
-    <string name="history_7_days">දින 7</string>
-    <string name="history_30_days">දින 30</string>
-    <string name="history_all">සියල්ල</string>
-    <string name="history_summary">මාත්‍රා %2$d න් %1$d ක් ගත්තා</string>
-    <string name="history_week_title">මේ සතිය</string>
-    <string name="history_filter_all">සියලුම බෙහෙත්</string>
-    <string name="history_today">අද</string>
-    <string name="history_yesterday">ඊයේ</string>
-    <string name="history_empty_title">තවම ඉතිහාසයක් නැත</string>
-    <string name="history_empty_body">ඔබ ගත්ත සහ මග හැරුණු මාත්‍රා මෙහි පෙනේ.</string>
-    <string name="day_full">සියලු මාත්‍රා ගත්තා</string>
-    <string name="day_partial">සමහර මාත්‍රා මග හැරුණා</string>
-    <string name="day_missed">මාත්‍රා මග හැරුණා</string>
-    <string name="day_none">දත්ත නැත</string>
-    <string name="action_share_report">වාර්තාව බෙදාගන්න</string>
-    <string name="share_dialog_title">වාර්තාවේ භාෂාව</string>
-    <string name="share_dialog_body">වාර්තාව සඳහා භාෂාවක් තෝරන්න. ඔබේ වෛද්‍යවරයා ඉංග්‍රීසියට කැමති විය හැක.</string>
+    <string name="history_title">History</string>
+    <string name="history_7_days">7 days</string>
+    <string name="history_30_days">30 days</string>
+    <string name="history_all">All</string>
+    <string name="history_summary">%1$d of %2$d doses taken</string>
+    <string name="history_week_title">This week</string>
+    <string name="history_filter_all">All medicines</string>
+    <string name="history_today">Today</string>
+    <string name="history_yesterday">Yesterday</string>
+    <string name="history_empty_title">No history yet</string>
+    <string name="history_empty_body">Your taken and missed doses will appear here.</string>
+    <string name="day_full">all doses taken</string>
+    <string name="day_partial">some doses missed</string>
+    <string name="day_missed">doses missed</string>
+    <string name="day_none">no data</string>
+    <string name="action_share_report">Share report</string>
+    <string name="share_dialog_title">Report language</string>
+    <string name="share_dialog_body">Choose the language for the report. Your doctor may prefer English.</string>
 
-    <string name="report_title">*Medicare බෙහෙත් වාර්තාව*</string>
-    <string name="report_period">කාල සීමාව: %1$s සිට %2$s දක්වා (දින %3$d)</string>
-    <string name="report_adherence">*නිසි ලෙස ගැනීම: %1$d%%*</string>
-    <string name="report_counts">ගත්තා %1$d · මග හැරුණා %2$d · මඟහැරියා %3$d (මාත්‍රා %4$d න්)</string>
-    <string name="report_no_doses">මෙම කාලයේ මාත්‍රා වාර්තා නැත.</string>
-    <string name="report_medicines">*බෙහෙත්*</string>
+    <string name="report_title">*Medicare medicine report*</string>
+    <string name="report_period">Period: %1$s to %2$s (%3$d days)</string>
+    <string name="report_adherence">*Adherence: %1$d%%*</string>
+    <string name="report_counts">Taken %1$d · Missed %2$d · Skipped %3$d (of %4$d doses)</string>
+    <string name="report_no_doses">No doses recorded in this period.</string>
+    <string name="report_medicines">*Medicines*</string>
     <string name="report_med_line">• %1$s %2$s · %3$s</string>
-    <string name="report_daily">*දෛනික සටහන (අවසන් දින %1$d)*</string>
+    <string name="report_daily">*Daily log (last %1$d days)*</string>
     <string name="report_entry">%1$s %2$s %3$s: %4$s</string>
-    <string name="report_footer">Medicare යෙදුමෙන් යැවූවකි. මෙය ස්වයං සටහනක් පමණි, වෛද්‍ය උපදෙසක් නොවේ.</string>
+    <string name="report_footer">Sent from the Medicare app. This is a self-reported log and not medical advice.</string>
 
     <plurals name="history_streak">
-        <item quantity="one">දින %d ක් දිගටම</item>
-        <item quantity="other">දින %d ක් දිගටම</item>
+        <item quantity="one">%d day in a row</item>
+        <item quantity="other">%d days in a row</item>
     </plurals>
+    <string name="profile_edit_title">ප්‍රොෆයිලය සංස්කරණය</string>
+    <string name="profile_phone">දුරකථන අංකය</string>
+    <string name="profile_address">ලිපිනය</string>
+    <string name="profile_location">දැන් ඉන්න තැන</string>
+    <string name="profile_refresh_location">ස්ථානය යාවත්කාලීන කරන්න</string>
+    <string name="profile_allergies">බෙහෙත් අසාත්මිකතා</string>
+    <string name="profile_add">එක් කරන්න</string>
+    <string name="profile_no_allergies">අසාත්මික බෙහෙත් නැත</string>
+    <string name="profile_not_set">එක් කර නැත</string>
+    <string name="profile_age">වයස %1$d</string>
+    <string name="profile_name_placeholder">ඔබේ නම</string>
+    <string name="profile_empty_title">ඔබේ විස්තර එක් කරන්න</string>
+    <string name="profile_empty_body">නම, දුරකථන අංකය සහ අසාත්මික බෙහෙත් එක් කිරීමට සංස්කරණය ඔබන්න.</string>
+    <string name="action_add_allergy_desc">අසාත්මික බෙහෙතක් එක් කරන්න</string>
+    <string name="location_updated_just_now">දැන් යාවත්කාලීන කළා</string>
+
+    <plurals name="location_updated_minutes">
+        <item quantity="one">මිනිත්තු %d කට පෙර යාවත්කාලීන කළා</item>
+        <item quantity="other">මිනිත්තු %d කට පෙර යාවත්කාලීන කළා</item>
+    </plurals>
+    <plurals name="location_updated_hours">
+        <item quantity="one">පැය %d කට පෙර යාවත්කාලීන කළා</item>
+        <item quantity="other">පැය %d කට පෙර යාවත්කාලීන කළා</item>
+    </plurals>
+    <plurals name="location_updated_days">
+        <item quantity="one">දින %d කට පෙර යාවත්කාලීන කළා</item>
+        <item quantity="other">දින %d කට පෙර යාවත්කාලීන කළා</item>
+    </plurals>
+
+    <string name="edit_full_name">සම්පූර්ණ නම</string>
+    <string name="edit_age">වයස</string>
+    <string name="edit_phone">දුරකථන අංකය</string>
+    <string name="edit_address">ලිපිනය</string>
+    <string name="edit_take_photo">ඡායාරූපයක් ගන්න</string>
+    <string name="edit_choose_photo">ඡායාරූපයක් තෝරන්න</string>
+    <string name="edit_photo_desc">ප්‍රොෆයිල් ඡායාරූපය</string>
+    <string name="edit_location_title">ස්ථානය</string>
+    <string name="edit_location_note">මෙම දුරකථනයේ පමණක් සුරැකේ.</string>
+    <string name="edit_use_location">මගේ දැන් ඉන්න තැන භාවිතා කරන්න</string>
+    <string name="edit_save">ප්‍රොෆයිලය සුරකින්න</string>
+    <string name="edit_error_name">ඔබේ නම ඇතුළත් කරන්න</string>
+    <string name="edit_error_age">වයස 1 සිට 120 දක්වා ඇතුළත් කරන්න</string>
+    <string name="edit_error_phone">නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න</string>
 </resources>
