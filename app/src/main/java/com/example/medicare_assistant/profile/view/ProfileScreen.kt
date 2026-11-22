@@ -35,7 +35,7 @@ import com.example.medicare_assistant.profile.view.components.PageTopBar
 import com.example.medicare_assistant.ui.components.ProfileAvatar
 import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
-
+import androidx.annotation.StringRes
 data class ProfileUiState(
     val loaded: Boolean = false,
     val isEmpty: Boolean = true,
@@ -46,7 +46,10 @@ data class ProfileUiState(
     val address: String = "",
     val locationText: String = "",
     val locationUpdatedAt: Long? = null,
-    val allergies: List<String> = emptyList()
+    val allergies: List<String> = emptyList(),
+    val photoPath: String? = null,
+    val locating: Boolean = false,
+    @StringRes val locationMessage: Int? = null
 )
 
 data class ProfileActions(
@@ -85,6 +88,8 @@ fun ProfileScreen(state: ProfileUiState, actions: ProfileActions) {
             LocationCard(
                 locationText = state.locationText,
                 updatedAt = state.locationUpdatedAt,
+                locating = state.locating,
+                message = state.locationMessage,
                 onRefresh = actions.onRefreshLocation
             )
             AllergyCard(allergies = state.allergies, onAdd = actions.onAddAllergy)
@@ -118,6 +123,7 @@ private fun ProfileHeader(state: ProfileUiState) {
     ) {
         ProfileAvatar(
             initial = state.initial,
+            photoPath = state.photoPath,
             contentDescription = displayName,
             diameter = 104.dp
         )
