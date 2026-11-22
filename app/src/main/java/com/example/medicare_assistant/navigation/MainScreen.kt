@@ -129,7 +129,8 @@ fun MainScreen() {
                     MainTab.TODAY -> HomeScreen(
                         onAddMedicine = { openForm(null) },
                         onOpenProfile = { overlay = Overlay.PROFILE },
-                        avatarInitial = profile.initial
+                        avatarInitial = profile.initial,
+                        avatarPhotoPath = profile.photoPath
                     )
                     MainTab.MEDICINES -> MedicinesScreen(
                         onAddClick = { openForm(null) },
