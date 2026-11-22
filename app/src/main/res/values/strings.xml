@@ -190,4 +190,47 @@
         <item quantity="other">%d days in a row</item>
     </plurals>
 
+    <string name="profile_edit_title">Edit profile</string>
+    <string name="profile_phone">Phone</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_location">Current location</string>
+    <string name="profile_refresh_location">Refresh location</string>
+    <string name="profile_allergies">Medicine allergies</string>
+    <string name="profile_add">Add</string>
+    <string name="profile_no_allergies">No allergies saved</string>
+    <string name="profile_not_set">Not added</string>
+    <string name="profile_age">Age %1$d</string>
+    <string name="profile_name_placeholder">Your name</string>
+    <string name="profile_empty_title">Add your details</string>
+    <string name="profile_empty_body">Tap Edit to add your name, phone and allergies.</string>
+    <string name="action_add_allergy_desc">Add an allergy</string>
+    <string name="location_updated_just_now">Updated just now</string>
+
+    <plurals name="location_updated_minutes">
+        <item quantity="one">Updated %d minute ago</item>
+        <item quantity="other">Updated %d minutes ago</item>
+    </plurals>
+    <plurals name="location_updated_hours">
+        <item quantity="one">Updated %d hour ago</item>
+        <item quantity="other">Updated %d hours ago</item>
+    </plurals>
+    <plurals name="location_updated_days">
+        <item quantity="one">Updated %d day ago</item>
+        <item quantity="other">Updated %d days ago</item>
+    </plurals>
+
+    <string name="edit_full_name">Full name</string>
+    <string name="edit_age">Age</string>
+    <string name="edit_phone">Phone number</string>
+    <string name="edit_address">Address</string>
+    <string name="edit_take_photo">Take photo</string>
+    <string name="edit_choose_photo">Choose photo</string>
+    <string name="edit_photo_desc">Profile photo</string>
+    <string name="edit_location_title">Location</string>
+    <string name="edit_location_note">Saved on this phone only.</string>
+    <string name="edit_use_location">Use my current location</string>
+    <string name="edit_save">Save profile</string>
+    <string name="edit_error_name">Enter your name</string>
+    <string name="edit_error_age">Enter an age from 1 to 120</string>
+    <string name="edit_error_phone">Enter a valid phone number</string>
 </resources>
