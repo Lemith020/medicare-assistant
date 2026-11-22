@@ -64,4 +64,8 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
     fun dismissCompletion(id: Long) {
         viewModelScope.launch { medicineRepo.dismissCompletion(id) }
     }
+
+    fun refresh() {
+        // Reactive flow
+    }
 }
