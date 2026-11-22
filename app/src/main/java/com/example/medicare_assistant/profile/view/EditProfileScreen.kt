@@ -37,6 +37,11 @@ data class EditProfileUiState(
     val age: String = "",
     val phone: String = "",
     val address: String = "",
+    val photoPath: String? = null,
+    val locationText: String = "",
+    val locationUpdatedAt: Long? = null,
+    val locating: Boolean = false,
+    @StringRes val locationMessage: Int? = null,
     @StringRes val nameError: Int? = null,
     @StringRes val ageError: Int? = null,
     @StringRes val phoneError: Int? = null
@@ -85,6 +90,7 @@ fun EditProfileScreen(state: EditProfileUiState, actions: EditProfileActions) {
 
             PhotoRow(
                 initial = state.initial,
+                photoPath = state.photoPath,
                 onTakePhoto = actions.onTakePhoto,
                 onChoosePhoto = actions.onChoosePhoto
             )
@@ -133,7 +139,13 @@ fun EditProfileScreen(state: EditProfileUiState, actions: EditProfileActions) {
                 )
             )
 
-            LocationSetCard(onUseCurrentLocation = actions.onUseCurrentLocation)
+            LocationSetCard(
+                locationText = state.locationText,
+                updatedAt = state.locationUpdatedAt,
+                locating = state.locating,
+                message = state.locationMessage,
+                onUseCurrentLocation = actions.onUseCurrentLocation
+            )
         }
 
         PrimaryButton(
