@@ -240,4 +240,24 @@
     <string name="location_error_disabled">Turn on location (GPS) and try again.</string>
     <string name="location_error_failed">Couldn’t get your location. Try again outdoors.</string>
     <string name="profile_open">Open profile</string>
+
+    <string name="allergy_subtitle">Medicare warns you if you add a medicine that matches this list.</string>
+    <string name="allergy_name_label">Medicine name</string>
+    <string name="allergy_name_hint">e.g. Penicillin</string>
+    <string name="allergy_reaction">Reaction: %1$s</string>
+    <string name="allergy_add_reaction">Tap to add a reaction</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_save_short">Save</string>
+    <string name="allergy_remove_title">Remove allergy?</string>
+    <string name="allergy_remove_message">Remove %1$s from your allergy list?</string>
+    <string name="allergy_reaction_title">Reaction for %1$s</string>
+    <string name="allergy_reaction_label">Reaction (optional)</string>
+    <string name="allergy_reaction_hint">e.g. rash</string>
+    <string name="allergy_error_empty">Enter a medicine name</string>
+    <string name="allergy_error_duplicate">Already in your list</string>
+    <string name="allergy_preview_label">Warning shown in Add medicine</string>
+    <string name="allergy_warning_title">Possible allergy: %1$s</string>
+    <string name="allergy_warning_body">This name matches your allergy list. Check with your doctor before taking it.</string>
+    <string name="allergy_edit_reaction_desc">Edit reaction for %1$s</string>
+    <string name="allergy_remove_desc">Remove %1$s</string>
 </resources>
