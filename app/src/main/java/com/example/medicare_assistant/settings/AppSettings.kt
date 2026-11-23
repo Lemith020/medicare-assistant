@@ -10,6 +10,12 @@ enum class ThemeMode(@StringRes val labelRes: Int) {
     DARK(R.string.theme_dark)
 }
 
+enum class TextSize(val scale: Float, @StringRes val labelRes: Int) {
+    NORMAL(1.0f, R.string.text_size_normal),
+    LARGE(1.15f, R.string.text_size_large),
+    EXTRA_LARGE(1.3f, R.string.text_size_extra_large)
+}
+
 enum class AppLanguage(val tag: String, val nativeName: String) {
     ENGLISH("en", "English"),
     SINHALA("si", "සිංහල"),
@@ -25,5 +31,6 @@ enum class AppLanguage(val tag: String, val nativeName: String) {
 
 data class AppSettings(
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
-    val language: AppLanguage = AppLanguage.ENGLISH
+    val language: AppLanguage = AppLanguage.ENGLISH,
+    val textSize: TextSize = TextSize.NORMAL
 )
