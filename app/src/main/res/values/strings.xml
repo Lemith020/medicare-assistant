@@ -260,4 +260,14 @@
     <string name="allergy_warning_body">This name matches your allergy list. Check with your doctor before taking it.</string>
     <string name="allergy_edit_reaction_desc">Edit reaction for %1$s</string>
     <string name="allergy_remove_desc">Remove %1$s</string>
+
+    <string name="text_size_title">Text size</string>
+    <string name="text_size_subtitle">Makes text bigger across the whole app.</string>
+    <string name="text_size_normal">Normal</string>
+    <string name="text_size_large">Large</string>
+    <string name="text_size_extra_large">Extra large</string>
+    <string name="text_size_option_desc">Text size: %1$s</string>
+    <string name="text_size_preview_label">Preview</string>
+    <string name="text_size_preview_name">Metformin 500 mg</string>
+    <string name="text_size_preview_time">Take at 2:00 PM</string>
 </resources>
