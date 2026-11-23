@@ -7,7 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 val LocalIsDark = staticCompositionLocalOf { false }
 
 private val LightColors = lightColorScheme(
@@ -55,9 +56,16 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun MedicareTheme(
     darkTheme: Boolean,
+    textScale: Float = 1f,
     content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(LocalIsDark provides darkTheme) {
+    val density = LocalDensity.current
+
+    // ===== [Text size] phone එකේ font scale එක (density.fontScale) සමඟ ඔයා තෝරපු ප්‍රමාණය (textScale) ගුණ කරනවා. sp වලින් ලියපු හැම text එකක්ම ඒ අනුව ලොකු වෙනවා =====
+    CompositionLocalProvider(
+        LocalIsDark provides darkTheme,
+        LocalDensity provides Density(density.density, density.fontScale * textScale)
+    ) {
         MaterialTheme(
             colorScheme = if (darkTheme) DarkColors else LightColors,
             typography = Typography,
