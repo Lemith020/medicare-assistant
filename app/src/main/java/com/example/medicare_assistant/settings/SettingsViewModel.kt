@@ -22,4 +22,8 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
     fun setLanguage(language: AppLanguage) {
         viewModelScope.launch { prefs.setLanguage(language) }
     }
+
+    fun setTextSize(size: TextSize) {
+        viewModelScope.launch { prefs.setTextSize(size) }
+    }
 }
