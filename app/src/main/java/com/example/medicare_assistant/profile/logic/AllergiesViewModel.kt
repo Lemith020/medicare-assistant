@@ -31,7 +31,7 @@ class AllergiesViewModel(app: Application) : AndroidViewModel(app) {
     private val input = MutableStateFlow("")
     private val error = MutableStateFlow<Int?>(null)
 
-    // ===== [Allergy list + suggestions + name field] save කරපු ලැයිස්තුව, ඒකේ නැති suggestions, ටයිප් කරපු නම UI එකට දෙනවා =====
+
     val state: StateFlow<AllergiesUiState> = combine(repo.profile, input, error) { profile, text, err ->
         AllergiesUiState(
             loaded = true,
@@ -44,19 +44,19 @@ class AllergiesViewModel(app: Application) : AndroidViewModel(app) {
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, AllergiesUiState())
 
-    // ===== [Medicine name field] ටයිප් කරන විට error එක අයින් කරනවා =====
+
     fun onNameChange(value: String) {
         input.value = value.take(40)
         error.value = null
     }
 
-    // ===== [Suggestion chip] ඔබපු නම field එකට පුරවනවා =====
+
     fun onSuggestionClick(name: String) {
         input.value = name
         error.value = null
     }
 
-    // ===== [Add button] හිස් නම් / දැනටමත් තියෙන නම් error, නැත්නම් ලැයිස්තුවට එකතු කරලා save කරනවා =====
+
     fun add() {
         val name = input.value.trim().replaceFirstChar { it.uppercaseChar() }
         if (name.isEmpty()) {
@@ -75,7 +75,7 @@ class AllergiesViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    // ===== [Remove button] (තහවුරු කිරීම UI එකේ dialog එකෙන්) ලැයිස්තුවෙන් ඉවත් කරලා save කරනවා =====
+
     fun remove(name: String) {
         viewModelScope.launch {
             repo.update { profile ->
@@ -84,7 +84,7 @@ class AllergiesViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    // ===== [Allergy card → Reaction dialog: Save] ප්‍රතික්‍රියාව (rash...) save කරනවා =====
+
     fun saveReaction(name: String, reaction: String) {
         viewModelScope.launch {
             repo.update { profile ->
@@ -97,7 +97,7 @@ class AllergiesViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    // ===== [Page එකෙන් පිටවෙද්දී] ටයිප් කරලා add නොකළ නම ඉවත් කරනවා =====
+
     fun clearInput() {
         input.value = ""
         error.value = null
