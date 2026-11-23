@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                 }
                 SystemBars(dark)
                 LocalizedApp(current.language.tag) {
-                    MedicareTheme(darkTheme = dark) {
+                    MedicareTheme(darkTheme = dark, textScale = current.textSize.scale) {
                         Surface(
                             modifier = Modifier.fillMaxSize(),
                             color = MaterialTheme.colorScheme.background
