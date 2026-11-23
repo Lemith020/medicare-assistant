@@ -51,7 +51,7 @@ fun EditProfileRoute(
         if (taken && uri != null) viewModel.onPhotoPicked(uri)
     }
 
-    // ===== [Location permission popup] ඉඩ දුන්නොත් ඒ ගමන්ම තැන ගන්නවා, නැත්නම් පණිවිඩයක් =====
+
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { granted ->
