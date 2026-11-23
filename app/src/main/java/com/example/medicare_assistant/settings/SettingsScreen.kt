@@ -65,6 +65,11 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
             }
         }
 
+        TextSizeCard(
+            selected = current.textSize,
+            onSelect = viewModel::setTextSize
+        )
+
         SettingsCard(title = stringResource(R.string.settings_language)) {
             AppLanguage.entries.forEach { language ->
                 OptionRow(
