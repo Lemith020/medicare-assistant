@@ -26,12 +26,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -84,8 +84,10 @@ class AlarmActivity : ComponentActivity() {
             it.name == intent.getStringExtra(ReminderIntents.EXTRA_SLOT)
         } ?: DoseSlot.MORNING
 
+        val textScale = runBlocking { SettingsPrefs(this@AlarmActivity).settings.first().textSize.scale }
+
         setContent {
-            MedicareTheme(darkTheme = false) {
+            MedicareTheme(darkTheme = false, textScale = textScale) {
                 val locale = LocalConfiguration.current.locales[0]
                 var loaded by remember { mutableStateOf(false) }
                 var medicine by remember { mutableStateOf<Medicine?>(null) }
