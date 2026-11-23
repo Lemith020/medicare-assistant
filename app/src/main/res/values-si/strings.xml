@@ -259,5 +259,13 @@
     <string name="allergy_edit_reaction_desc">%1$s සඳහා ප්‍රතික්‍රියාව සංස්කරණය කරන්න</string>
     <string name="allergy_remove_desc">%1$s ඉවත් කරන්න</string>
 
-    
+    <string name="text_size_title">අකුරු ප්‍රමාණය</string>
+    <string name="text_size_subtitle">මුළු යෙදුමේම අකුරු විශාල කරයි.</string>
+    <string name="text_size_normal">සාමාන්‍ය</string>
+    <string name="text_size_large">විශාල</string>
+    <string name="text_size_extra_large">ඉතා විශාල</string>
+    <string name="text_size_option_desc">අකුරු ප්‍රමාණය: %1$s</string>
+    <string name="text_size_preview_label">පෙරදසුන</string>
+    <string name="text_size_preview_name">Metformin 500 mg</string>
+    <string name="text_size_preview_time">ගන්න වෙලාව: 2:00 PM</string>
 </resources>
