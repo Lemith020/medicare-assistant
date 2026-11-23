@@ -53,6 +53,9 @@ import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
 import com.example.medicare_assistant.profile.logic.EditProfileRoute
 import com.example.medicare_assistant.profile.logic.AllergiesRoute
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
     MEDICINES(R.string.nav_medicines),
@@ -76,7 +79,7 @@ fun MainScreen() {
         overlay = Overlay.ADD_MEDICINE
     }
 
-    // ===== [Back gesture] overlay page එකක ඉන්නකොට parent page එකට යනවා =====
+
     BackHandler(enabled = overlay != Overlay.NONE) {
         overlay = overlay.parent ?: Overlay.NONE
     }
@@ -94,7 +97,7 @@ fun MainScreen() {
             }
         )
 
-        // ===== [Profile page] Edit → EDIT_PROFILE (අලුත් form එකක්), "+ Add" allergy → ALLERGIES =====
+
         Overlay.PROFILE -> ProfileRoute(
             onBack = { overlay = Overlay.NONE },
             onEdit = {
@@ -104,15 +107,15 @@ fun MainScreen() {
             onOpenAllergies = { overlay = Overlay.ALLERGIES }
         )
 
-        // ===== [Edit profile page] Save කළාම / Back ඔබපුවාම Profile page එකට =====
+
         Overlay.EDIT_PROFILE -> EditProfileRoute(
             formKey = formKey,
             onBack = { overlay = Overlay.PROFILE },
             onSaved = { overlay = Overlay.PROFILE }
         )
 
-        // ===== [Allergies page] තාවකාලික (Step 7 එකේදී ඇත්ත page එක) =====
-        // ===== [Allergies page] Back → Profile page එකට =====
+
+
         Overlay.ALLERGIES -> AllergiesRoute(
             onBack = { overlay = Overlay.PROFILE }
         )
@@ -149,33 +152,40 @@ fun MainScreen() {
 @Composable
 private fun BottomBar(selected: MainTab, onSelect: (MainTab) -> Unit) {
     val shape = RoundedCornerShape(20.dp)
-    Row(
-        modifier = Modifier
-            .padding(horizontal = 20.dp, vertical = 12.dp)
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface, shape)
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, shape)
-            .padding(6.dp),
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
+    val density = LocalDensity.current
+
+
+    CompositionLocalProvider(
+        LocalDensity provides Density(density.density, minOf(density.fontScale, 1.15f))
     ) {
-        MainTab.entries.forEach { tab ->
-            val isSelected = tab == selected
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .heightIn(min = 52.dp)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(if (isSelected) LuminousYellow else Color.Transparent)
-                    .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(tab) }),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = stringResource(tab.labelRes),
-                    color = if (isSelected) Ink else MaterialTheme.colorScheme.onSurface,
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center
-                )
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 20.dp, vertical = 12.dp)
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface, shape)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, shape)
+                .padding(6.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            MainTab.entries.forEach { tab ->
+                val isSelected = tab == selected
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .heightIn(min = 52.dp)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(if (isSelected) LuminousYellow else Color.Transparent)
+                        .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(tab) }),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(tab.labelRes),
+                        color = if (isSelected) Ink else MaterialTheme.colorScheme.onSurface,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }
