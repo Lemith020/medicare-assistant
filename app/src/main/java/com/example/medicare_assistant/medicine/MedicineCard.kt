@@ -1,23 +1,24 @@
 package com.example.medicare_assistant.medicine
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -28,10 +29,13 @@ import androidx.compose.ui.unit.sp
 import com.example.medicare_assistant.R
 import com.example.medicare_assistant.core.formatDate
 import com.example.medicare_assistant.core.formatTime
+import com.example.medicare_assistant.ui.theme.Ink
+import com.example.medicare_assistant.ui.theme.LuminousYellow
 import com.example.medicare_assistant.ui.theme.statusColors
 import java.time.LocalDate
 import java.util.Locale
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MedicineCard(
     medicine: Medicine,
@@ -41,17 +45,30 @@ fun MedicineCard(
     onDelete: () -> Unit
 ) {
     val colors = statusColors()
-    val shape = RoundedCornerShape(18.dp)
+    val shape = RoundedCornerShape(24.dp)
     val resources = LocalContext.current.resources
     val completed = medicine.isCompleted(today)
     val low = medicine.isLowStock && !completed
 
-    val stockText = resources.getQuantityString(
-        if (low) R.plurals.tablets_left_low else R.plurals.tablets_left,
-        medicine.stock,
-        medicine.stock
-    )
-    val timesText = medicine.times.values.sorted().joinToString(" · ") { formatTime(it, locale) }
+    val isSyrup = medicine.amountPerDose.contains("ml", ignoreCase = true) ||
+                  medicine.dosage.contains("ml", ignoreCase = true) ||
+                  medicine.dosage.contains("drops", ignoreCase = true)
+
+    val stockText = if (isSyrup) {
+        resources.getQuantityString(
+            if (low) R.plurals.ml_left_low else R.plurals.ml_left,
+            medicine.stock,
+            medicine.stock
+        )
+    } else {
+        resources.getQuantityString(
+            if (low) R.plurals.tablets_left_low else R.plurals.tablets_left,
+            medicine.stock,
+            medicine.stock
+        )
+    }
+
+    val timesText = medicine.times.values.sorted().joinToString(", ") { formatTime(it, locale) }
     val daysLeft = medicine.daysLeft(today)
     val courseText = when {
         medicine.courseDays == null -> stringResource(R.string.course_ongoing)
@@ -59,70 +76,130 @@ fun MedicineCard(
         else -> resources.getQuantityString(R.plurals.days_left, daysLeft!!.toInt(), daysLeft.toInt())
     }
 
-    val detailsText = if (medicine.amountPerDose.isNotBlank()) "${medicine.dosage} · ${medicine.amountPerDose}" else medicine.dosage
-    val titleText = if (detailsText.isNotBlank()) "${medicine.name} $detailsText" else medicine.name
+    val stockEmoji = if (isSyrup) "💧" else "💊"
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface, shape)
-            .border(
-                width = if (low) 2.dp else 1.dp,
-                color = if (low) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outlineVariant,
-                shape = shape
-            )
-            .padding(16.dp)
+            .background(LuminousYellow, shape)
+            .padding(18.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Text(
-            text = titleText,
-            color = MaterialTheme.colorScheme.onSurface,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = timesText,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 16.sp
-        )
-        Text(
-            text = courseText,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 16.sp
-        )
-        Spacer(Modifier.height(6.dp))
-        Text(
-            text = stockText,
-            color = if (low) colors.badText else MaterialTheme.colorScheme.onSurface,
-            fontSize = 16.sp,
-            fontWeight = if (low) FontWeight.Bold else FontWeight.Normal
-        )
-        Spacer(Modifier.height(10.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            CardButton(
-                text = stringResource(R.string.action_edit),
-                description = stringResource(R.string.action_edit_for, medicine.name),
-                onClick = onEdit
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = medicine.name,
+                color = Ink,
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Bold
             )
-            CardButton(
-                text = stringResource(R.string.action_delete),
-                description = stringResource(R.string.action_delete_for, medicine.name),
-                onClick = onDelete
+            if (medicine.dosage.isNotBlank()) {
+                Row(
+                    modifier = Modifier
+                        .background(Color.White, RoundedCornerShape(50))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    val dosageIcon = if (isSyrup) "💧" else "⚖️"
+                    Text(text = dosageIcon, fontSize = 14.sp)
+                    Text(text = medicine.dosage, color = Ink, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                }
+            }
+            if (medicine.amountPerDose.isNotBlank()) {
+                Row(
+                    modifier = Modifier
+                        .background(Color.White, RoundedCornerShape(50))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    val amountIcon = if (isSyrup) "💧" else "💊"
+                    Text(text = amountIcon, fontSize = 14.sp)
+                    Text(text = medicine.amountPerDose, color = Ink, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                }
+            }
+        }
+
+        if (timesText.isNotBlank()) {
+            Row(
+                modifier = Modifier
+                    .background(Color.White.copy(alpha = 0.65f), RoundedCornerShape(50))
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Text(text = "⏰", fontSize = 14.sp)
+                Text(text = timesText, color = Ink, fontSize = 16.sp, fontWeight = FontWeight.Medium)
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .background(Color.White.copy(alpha = 0.65f), RoundedCornerShape(50))
+                .padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Text(text = "📆", fontSize = 14.sp)
+            Text(text = courseText, color = Ink, fontSize = 16.sp, fontWeight = FontWeight.Medium)
+        }
+
+        Row(
+            modifier = Modifier
+                .background(Color.White, RoundedCornerShape(50))
+                .padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Text(text = stockEmoji, fontSize = 14.sp)
+            Text(
+                text = stockText,
+                color = if (low) colors.badText else Ink,
+                fontSize = 16.sp,
+                fontWeight = if (low) FontWeight.Bold else FontWeight.Medium
             )
         }
-    }
-}
 
-@Composable
-private fun CardButton(text: String, description: String, onClick: () -> Unit) {
-    OutlinedButton(
-        onClick = onClick,
-        modifier = Modifier
-            .heightIn(min = 48.dp)
-            .semantics { contentDescription = description },
-        shape = RoundedCornerShape(14.dp),
-        border = BorderStroke(2.dp, MaterialTheme.colorScheme.onSurface),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface)
-    ) {
-        Text(text = text, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+        Spacer(Modifier.height(4.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Button(
+                onClick = onEdit,
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
+                    .semantics { contentDescription = resources.getString(R.string.action_edit_for, medicine.name) },
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Ink)
+            ) {
+                Text(
+                    text = stringResource(R.string.action_edit) + " ✏️",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            Button(
+                onClick = onDelete,
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
+                    .semantics { contentDescription = resources.getString(R.string.action_delete_for, medicine.name) },
+                shape = RoundedCornerShape(18.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEE2E2), contentColor = Color(0xFFB91C1C))
+            ) {
+                Text(
+                    text = stringResource(R.string.action_delete) + " 🗑️",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
     }
 }
