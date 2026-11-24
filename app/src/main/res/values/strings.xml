@@ -18,8 +18,10 @@
     <string name="greeting_morning">Good morning</string>
     <string name="greeting_afternoon">Good afternoon</string>
     <string name="greeting_evening">Good evening</string>
+    <string name="greeting_night">Good night</string>
     <string name="home_subtitle">Today\'s doses · Taken %1$d / %2$d</string>
     <string name="home_next_dose">Next dose · %1$s</string>
+    <string name="home_next_dose_title">Next dose</string>
     <string name="home_all_done">All done for today</string>
     <string name="home_all_done_body">No remaining doses today.</string>
     <string name="home_low_stock">Low stock: %1$s %2$d left</string>
@@ -75,6 +77,14 @@
     <plurals name="tablets_left_low">
         <item quantity="one">%d tablet left · Low stock</item>
         <item quantity="other">%d tablets left · Low stock</item>
+    </plurals>
+    <plurals name="ml_left">
+        <item quantity="one">%d ml left</item>
+        <item quantity="other">%d ml left</item>
+    </plurals>
+    <plurals name="ml_left_low">
+        <item quantity="one">%d ml left · Low stock</item>
+        <item quantity="other">%d ml left · Low stock</item>
     </plurals>
 
     <string name="form_add_title">Add medicine</string>
@@ -231,8 +241,9 @@
     <string name="edit_use_location">Use my current location</string>
     <string name="edit_save">Save profile</string>
     <string name="edit_error_name">Enter your name</string>
-    <string name="edit_error_age">Enter an age from 1 to 120</string>
-    <string name="edit_error_phone">Enter a valid phone number</string>
+    <string name="edit_error_name_length">Name cannot exceed 40 characters</string>
+    <string name="edit_error_age">Enter an age from 1 to 199</string>
+    <string name="edit_error_phone">Enter a 10-digit phone number</string>
 
     <string name="edit_error_no_camera">No camera app found</string>
     <string name="profile_locating">Getting location…</string>
