@@ -49,14 +49,22 @@ class EditProfileViewModel(app: Application) : AndroidViewModel(app) {
     }
 
 
-    fun onNameChange(value: String) = _state.update { it.copy(name = value, nameError = null) }
+    fun onNameChange(value: String) {
+        val filtered = value.filter { it.isLetter() || it.isWhitespace() || it == '.' || it == '-' || it == '\'' }.take(40)
+        _state.update { it.copy(name = filtered, nameError = null) }
+    }
 
 
-    fun onAgeChange(value: String) =
-        _state.update { it.copy(age = value.filter(Char::isDigit).take(3), ageError = null) }
+    fun onAgeChange(value: String) {
+        val filtered = value.filter(Char::isDigit).take(3)
+        _state.update { it.copy(age = filtered, ageError = null) }
+    }
 
 
-    fun onPhoneChange(value: String) = _state.update { it.copy(phone = value.take(20), phoneError = null) }
+    fun onPhoneChange(value: String) {
+        val filtered = value.filter { it.isDigit() || it in "+ ()-" }.take(15)
+        _state.update { it.copy(phone = filtered, phoneError = null) }
+    }
 
 
     fun onAddressChange(value: String) = _state.update { it.copy(address = value) }
@@ -109,11 +117,15 @@ class EditProfileViewModel(app: Application) : AndroidViewModel(app) {
     fun save(onSaved: () -> Unit) {
         val s = _state.value
         val age = s.age.toIntOrNull()
-        val phone = s.phone.trim()
+        val phoneDigits = s.phone.filter { it.isDigit() }
 
-        val nameError = if (s.name.isBlank()) R.string.edit_error_name else null
-        val ageError = if (s.age.isNotEmpty() && (age == null || age !in 1..120)) R.string.edit_error_age else null
-        val phoneError = if (phone.isNotEmpty() && !isValidPhone(phone)) R.string.edit_error_phone else null
+        val nameError = when {
+            s.name.isBlank() -> R.string.edit_error_name
+            s.name.length > 40 -> R.string.edit_error_name_length
+            else -> null
+        }
+        val ageError = if (s.age.isEmpty() || age == null || age !in 1..199) R.string.edit_error_age else null
+        val phoneError = if (phoneDigits.length != 10) R.string.edit_error_phone else null
 
         _state.update { it.copy(nameError = nameError, ageError = ageError, phoneError = phoneError) }
 
@@ -132,7 +144,7 @@ class EditProfileViewModel(app: Application) : AndroidViewModel(app) {
                 var updated = it.copy(
                     name = s.name.trim(),
                     age = age,
-                    phone = phone,
+                    phone = s.phone.trim(),
                     address = s.address.trim(),
                     photoPath = photo
                 )
@@ -148,10 +160,5 @@ class EditProfileViewModel(app: Application) : AndroidViewModel(app) {
             }
             onSaved()
         }
-    }
-
-    private fun isValidPhone(phone: String): Boolean {
-        val digits = phone.count { it.isDigit() }
-        return phone.all { it.isDigit() || it in "+ ()-" } && digits in 7..15
     }
 }
