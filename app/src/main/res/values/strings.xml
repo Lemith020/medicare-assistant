@@ -286,4 +286,51 @@
     <string name="emergency_cancel_btn">Cancel</string>
     <string name="emergency_call_desc">Call %1$s</string>
     <string name="emergency_delete_desc">Delete %1$s</string>
+
+    <string name="nav_reports">Reports</string>
+    <string name="records_title">Medical Records</string>
+    <string name="records_subtitle">Receipts &amp; lab reports</string>
+    <string name="records_filter_all">All</string>
+    <string name="records_filter_receipts">Receipts</string>
+    <string name="records_filter_reports">Reports</string>
+    <string name="record_category_receipt">Receipt</string>
+    <string name="record_category_report">Report</string>
+    <string name="records_search_desc">Search records</string>
+    <string name="records_search_label">Search</string>
+    <string name="records_search_hint">Doctor, lab or test name</string>
+    <string name="records_add">Add record</string>
+    <string name="records_empty_title">No records yet</string>
+    <string name="records_empty_body">Save your doctor’s receipts and lab reports here so you can find them any time.</string>
+    <string name="records_nothing_found">Nothing found</string>
+    <string name="records_nothing_found_body">Try a different word or filter.</string>
+
+    <string name="record_form_add_title">Add record</string>
+    <string name="record_form_edit_title">Edit record</string>
+    <string name="record_form_type">Type</string>
+    <string name="record_form_title">What is it for?</string>
+    <string name="record_form_title_hint">e.g. Sugar test (FBS)</string>
+    <string name="record_form_source">Doctor or lab name</string>
+    <string name="record_form_source_hint">e.g. Dr. Nimal Perera</string>
+    <string name="record_form_date">Date</string>
+    <string name="record_form_notes">Details (optional)</string>
+    <string name="record_form_notes_hint">e.g. Fasting sugar 98 mg/dL</string>
+    <string name="record_form_photo">Photo of the document</string>
+    <string name="record_form_take_photo">Take photo</string>
+    <string name="record_form_choose_photo">Choose from gallery</string>
+    <string name="record_form_remove_photo">Remove photo</string>
+    <string name="record_form_save">Save record</string>
+    <string name="record_error_title">Enter what this is for</string>
+    <string name="record_error_source">Enter the doctor or lab name</string>
+    <string name="record_error_date">Date can’t be in the future</string>
+    <string name="record_photo_preview_desc">Document photo</string>
+
+    <string name="record_detail_source">Doctor or lab</string>
+    <string name="record_detail_date">Date</string>
+    <string name="record_detail_notes">Details</string>
+    <string name="record_detail_no_photo">No photo attached</string>
+    <string name="record_detail_photo_hint">Tap the photo to zoom</string>
+    <string name="record_delete">Delete record</string>
+    <string name="record_delete_title">Delete this record?</string>
+    <string name="record_delete_message">%1$s will be removed from this phone.</string>
+    <string name="record_zoom_close">Close</string>
 </resources>
