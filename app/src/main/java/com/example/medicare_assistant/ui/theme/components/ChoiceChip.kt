@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicare_assistant.ui.theme.Ink
@@ -51,15 +52,18 @@ fun ChoiceChip(
             .background(container)
             .border(2.dp, MaterialTheme.colorScheme.onSurface, shape)
             .selectable(selected = selected, role = role, onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 10.dp),
+            .padding(horizontal = 10.dp, vertical = 10.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = label,
             color = content,
-            fontSize = 16.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.SemiBold,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }
