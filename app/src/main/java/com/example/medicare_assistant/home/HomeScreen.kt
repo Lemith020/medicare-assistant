@@ -84,7 +84,8 @@ private fun HomeContent(
     val greeting = when (LocalTime.now().hour) {
         in 5..11 -> R.string.greeting_morning
         in 12..16 -> R.string.greeting_afternoon
-        else -> R.string.greeting_evening
+        in 17..21 -> R.string.greeting_evening
+        else -> R.string.greeting_night
     }
     val date = LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM", locale))
     var showEmergencyDialog by remember { mutableStateOf(false) }
