@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -114,6 +115,7 @@ fun NextDoseCard(
                     .height(48.dp)
                     .semantics { contentDescription = takenDescription },
                 shape = RoundedCornerShape(50),
+                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = takenBg,
                     contentColor = takenContentColor,
@@ -130,14 +132,16 @@ fun NextDoseCard(
                             imageVector = Icons.Default.Check,
                             contentDescription = null,
                             tint = Color(0xFF15803D),
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(16.dp)
                         )
-                        Spacer(Modifier.width(6.dp))
+                        Spacer(Modifier.width(4.dp))
                     }
                     Text(
                         text = stringResource(R.string.action_taken),
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 13.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        softWrap = false
                     )
                 }
             }
@@ -167,6 +171,7 @@ fun NextDoseCard(
                     .height(48.dp)
                     .semantics { contentDescription = skipDescription },
                 shape = RoundedCornerShape(50),
+                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = skipBg,
                     contentColor = skipContentColor,
@@ -183,14 +188,16 @@ fun NextDoseCard(
                             imageVector = Icons.Default.Close,
                             contentDescription = null,
                             tint = Color(0xFFB91C1C),
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(16.dp)
                         )
-                        Spacer(Modifier.width(6.dp))
+                        Spacer(Modifier.width(4.dp))
                     }
                     Text(
                         text = stringResource(R.string.action_skip),
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 13.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        softWrap = false
                     )
                 }
             }
