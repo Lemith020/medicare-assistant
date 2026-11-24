@@ -1,5 +1,6 @@
 package com.example.medicare_assistant.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -42,15 +44,31 @@ import com.example.medicare_assistant.ui.theme.Ink
 import com.example.medicare_assistant.ui.theme.LuminousYellow
 import com.example.medicare_assistant.ui.theme.statusColors
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.Locale
 import com.example.medicare_assistant.dose.DoseStatus
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-fun formatTime(time: LocalTime, locale: Locale): String =
-    time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale))
+@SuppressLint("NewApi")
+fun formatTime(time: LocalTime, locale: Locale): String {
+    val hour = time.hour
+    val minute = time.minute
+    val hour12 = when {
+        hour == 0 -> 12
+        hour > 12 -> hour - 12
+        else -> hour
+    }
+    val minuteStr = String.format(locale, "%02d", minute)
+    val isPm = hour >= 12
+
+    val amPmStr = when (locale.language) {
+        "si" -> if (isPm) "ප.ව." else "පෙ.ව."
+        "ta" -> if (isPm) "பிற்பகல்" else "முற்பகல்"
+        else -> if (isPm) "PM" else "AM"
+    }
+
+    return "$hour12:$minuteStr $amPmStr"
+}
 
 enum class DoseActionState { NONE, TAKEN, SKIPPED }
 
@@ -63,7 +81,6 @@ fun NextDoseCard(
 ) {
     val takenDescription = stringResource(R.string.action_taken_for, dose.name)
     val skipDescription = stringResource(R.string.action_skip_for, dose.name)
-    val detailsText = if (dose.amountPerDose.isNotBlank()) "${dose.dosage} · ${dose.amountPerDose}" else dose.dosage
 
     var actionState by remember(dose.medicineId, dose.slot, dose.time) { mutableStateOf(DoseActionState.NONE) }
     val scope = rememberCoroutineScope()
@@ -74,18 +91,89 @@ fun NextDoseCard(
             .background(LuminousYellow, RoundedCornerShape(24.dp))
             .padding(18.dp)
     ) {
-        Text(
-            text = stringResource(R.string.home_next_dose, formatTime(dose.time, locale)),
-            color = Ink,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(4.dp))
-        Text(text = dose.name, color = Ink, fontSize = 26.sp, fontWeight = FontWeight.Bold)
-        if (detailsText.isNotBlank()) {
-            Text(text = detailsText, color = Ink, fontSize = 18.sp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = stringResource(R.string.home_next_dose_title),
+                color = Ink,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Row(
+                modifier = Modifier
+                    .background(Color.White.copy(alpha = 0.65f), RoundedCornerShape(50))
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Text(
+                    text = formatTime(dose.time, locale),
+                    color = Ink,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Icon(
+                    imageVector = Icons.Default.Schedule,
+                    contentDescription = null,
+                    tint = Ink,
+                    modifier = Modifier.size(16.dp)
+                )
+            }
         }
-        Spacer(Modifier.height(14.dp))
+
+        Spacer(Modifier.height(8.dp))
+        Text(text = dose.name, color = Ink, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+
+        if (dose.dosage.isNotBlank() || dose.amountPerDose.isNotBlank()) {
+            Spacer(Modifier.height(10.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                val isSyrup = dose.amountPerDose.contains("ml", ignoreCase = true) || dose.dosage.contains("ml", ignoreCase = true)
+                if (dose.dosage.isNotBlank()) {
+                    Row(
+                        modifier = Modifier
+                            .background(Color.White, RoundedCornerShape(50))
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        val dosageIcon = if (isSyrup) "💧" else "⚖️"
+                        Text(text = dosageIcon, fontSize = 15.sp)
+                        Text(
+                            text = dose.dosage,
+                            color = Ink,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                }
+                if (dose.amountPerDose.isNotBlank()) {
+                    Row(
+                        modifier = Modifier
+                            .background(Color.White, RoundedCornerShape(50))
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        val amountIcon = if (isSyrup) "💧" else "💊"
+                        Text(text = amountIcon, fontSize = 15.sp)
+                        Text(
+                            text = dose.amountPerDose,
+                            color = Ink,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                }
+            }
+        }
+
+        Spacer(Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
