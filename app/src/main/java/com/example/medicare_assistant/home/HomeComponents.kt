@@ -1,6 +1,5 @@
 package com.example.medicare_assistant.home
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -9,18 +8,28 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -36,9 +45,13 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.Locale
 import com.example.medicare_assistant.dose.DoseStatus
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 fun formatTime(time: LocalTime, locale: Locale): String =
     time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale))
+
+enum class DoseActionState { NONE, TAKEN, SKIPPED }
 
 @Composable
 fun NextDoseCard(
@@ -50,6 +63,9 @@ fun NextDoseCard(
     val takenDescription = stringResource(R.string.action_taken_for, dose.name)
     val skipDescription = stringResource(R.string.action_skip_for, dose.name)
     val detailsText = if (dose.amountPerDose.isNotBlank()) "${dose.dosage} · ${dose.amountPerDose}" else dose.dosage
+
+    var actionState by remember(dose.medicineId, dose.slot, dose.time) { mutableStateOf(DoseActionState.NONE) }
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -69,29 +85,114 @@ fun NextDoseCard(
             Text(text = detailsText, color = Ink, fontSize = 18.sp)
         }
         Spacer(Modifier.height(14.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Button(
-                onClick = onTaken,
-                modifier = Modifier
-                    .weight(2f)
-                    .heightIn(min = 56.dp)
-                    .semantics { contentDescription = takenDescription },
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Ink, contentColor = LuminousYellow)
-            ) {
-                Text(stringResource(R.string.action_taken), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            val takenBg = when (actionState) {
+                DoseActionState.TAKEN -> Color.White
+                else -> Color(0xFFFFFDF7)
             }
-            OutlinedButton(
-                onClick = onSkip,
+            val takenContentColor = when (actionState) {
+                DoseActionState.TAKEN -> Color(0xFF15803D)
+                else -> Color(0xFF1C1B1F)
+            }
+
+            Button(
+                onClick = {
+                    if (actionState == DoseActionState.NONE) {
+                        actionState = DoseActionState.TAKEN
+                        scope.launch {
+                            delay(300)
+                            onTaken()
+                        }
+                    }
+                },
+                enabled = actionState == DoseActionState.NONE,
                 modifier = Modifier
                     .weight(1f)
-                    .heightIn(min = 56.dp)
-                    .semantics { contentDescription = skipDescription },
-                shape = RoundedCornerShape(16.dp),
-                border = BorderStroke(2.dp, Ink),
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = Ink)
+                    .height(48.dp)
+                    .semantics { contentDescription = takenDescription },
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = takenBg,
+                    contentColor = takenContentColor,
+                    disabledContainerColor = takenBg,
+                    disabledContentColor = takenContentColor
+                )
             ) {
-                Text(stringResource(R.string.action_skip), fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (actionState == DoseActionState.TAKEN) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = null,
+                            tint = Color(0xFF15803D),
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(Modifier.width(6.dp))
+                    }
+                    Text(
+                        text = stringResource(R.string.action_taken),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            val skipBg = when (actionState) {
+                DoseActionState.SKIPPED -> Color(0xFFFEE2E2)
+                else -> Color(0xFFFFFDF7)
+            }
+            val skipContentColor = when (actionState) {
+                DoseActionState.SKIPPED -> Color(0xFFB91C1C)
+                else -> Color(0xFF1C1B1F)
+            }
+
+            Button(
+                onClick = {
+                    if (actionState == DoseActionState.NONE) {
+                        actionState = DoseActionState.SKIPPED
+                        scope.launch {
+                            delay(300)
+                            onSkip()
+                        }
+                    }
+                },
+                enabled = actionState == DoseActionState.NONE,
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
+                    .semantics { contentDescription = skipDescription },
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = skipBg,
+                    contentColor = skipContentColor,
+                    disabledContainerColor = skipBg,
+                    disabledContentColor = skipContentColor
+                )
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (actionState == DoseActionState.SKIPPED) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = null,
+                            tint = Color(0xFFB91C1C),
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(Modifier.width(6.dp))
+                    }
+                    Text(
+                        text = stringResource(R.string.action_skip),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
     }
