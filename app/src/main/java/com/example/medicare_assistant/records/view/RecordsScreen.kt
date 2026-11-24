@@ -104,12 +104,16 @@ fun RecordsScreen(state: RecordsUiState, actions: RecordsActions) {
 
             Spacer(Modifier.height(12.dp))
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 RecordFilter.entries.forEach { filter ->
                     ChoiceChip(
                         label = stringResource(filter.labelRes),
                         selected = state.filter == filter,
                         onClick = { actions.onFilterChange(filter) },
+                        modifier = Modifier.weight(1f),
                         role = Role.RadioButton
                     )
                 }
