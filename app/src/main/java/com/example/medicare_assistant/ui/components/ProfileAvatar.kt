@@ -4,7 +4,6 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -55,7 +54,6 @@ fun ProfileAvatar(
         .size(diameter)
         .clip(CircleShape)
         .background(LuminousYellow)
-        .border(3.dp, Ink, CircleShape)
 
     val clickable = if (onClick != null) base.clickable(role = Role.Button, onClick = onClick) else base
 
