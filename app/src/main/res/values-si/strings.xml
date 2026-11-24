@@ -284,4 +284,52 @@
     <string name="emergency_cancel_btn">අවලංගු කරන්න</string>
     <string name="emergency_call_desc">%1$s අමතන්න</string>
     <string name="emergency_delete_desc">%1$s ඉවත් කරන්න</string>
+
+    <string name="nav_reports">වාර්තා</string>
+    <string name="records_title">වෛද්‍ය වාර්තා</string>
+    <string name="records_subtitle">රිසිට්පත් සහ රසායනාගාර වාර්තා</string>
+    <string name="records_filter_all">සියල්ල</string>
+    <string name="records_filter_receipts">රිසිට්පත්</string>
+    <string name="records_filter_reports">වාර්තා</string>
+    <string name="record_category_receipt">රිසිට්පත</string>
+    <string name="record_category_report">වාර්තාව</string>
+    <string name="records_search_desc">වාර්තා සොයන්න</string>
+    <string name="records_search_label">සොයන්න</string>
+    <string name="records_search_hint">වෛද්‍යවරයා, රසායනාගාරය හෝ පරීක්ෂණයේ නම</string>
+    <string name="records_add">වාර්තාවක් එක් කරන්න</string>
+    <string name="records_empty_title">තවම වාර්තා නැත</string>
+    <string name="records_empty_body">ඔබේ වෛද්‍යවරයාගේ රිසිට්පත් සහ රසායනාගාර වාර්තා මෙහි සුරකින්න, ඕනෑම වේලාවක ඉක්මනින් සොයාගන්න.</string>
+    <string name="records_nothing_found">කිසිවක් හමු නොවීය</string>
+    <string name="records_nothing_found_body">වෙනත් වචනයක් හෝ පෙරහනක් උත්සාහ කරන්න.</string>
+
+    <string name="record_form_add_title">වාර්තාවක් එක් කරන්න</string>
+    <string name="record_form_edit_title">වාර්තාව සංස්කරණය</string>
+    <string name="record_form_type">වර්ගය</string>
+    <string name="record_form_title">මෙය කුමක් සඳහාද?</string>
+    <string name="record_form_title_hint">උදා: සීනි පරීක්ෂාව (FBS)</string>
+    <string name="record_form_source">වෛද්‍යවරයා හෝ රසායනාගාරයේ නම</string>
+    <string name="record_form_source_hint">උදා: Dr. Nimal Perera</string>
+    <string name="record_form_date">දිනය</string>
+    <string name="record_form_notes">විස්තර (අත්‍යවශ්‍ය නොවේ)</string>
+    <string name="record_form_notes_hint">උදා: උපවාස සීනි 98 mg/dL</string>
+    <string name="record_form_photo">ලේඛනයේ ඡායාරූපය</string>
+    <string name="record_form_take_photo">ඡායාරූපයක් ගන්න</string>
+    <string name="record_form_choose_photo">Gallery එකෙන් තෝරන්න</string>
+    <string name="record_form_remove_photo">ඡායාරූපය ඉවත් කරන්න</string>
+    <string name="record_form_save">වාර්තාව සුරකින්න</string>
+    <string name="record_error_title">මෙය කුමක් සඳහාදැයි ඇතුළත් කරන්න</string>
+    <string name="record_error_source">වෛද්‍යවරයාගේ හෝ රසායනාගාරයේ නම ඇතුළත් කරන්න</string>
+    <string name="record_error_date">දිනය අනාගතයක් විය නොහැක</string>
+    <string name="record_photo_preview_desc">ලේඛන ඡායාරූපය</string>
+
+    <string name="record_detail_source">වෛද්‍යවරයා / රසායනාගාරය</string>
+    <string name="record_detail_date">දිනය</string>
+    <string name="record_detail_notes">විස්තර</string>
+    <string name="record_detail_no_photo">ඡායාරූපයක් එක් කර නැත</string>
+    <string name="record_detail_photo_hint">විශාල කර බැලීමට ඡායාරූපය ඔබන්න</string>
+    <string name="record_delete">වාර්තාව මකන්න</string>
+    <string name="record_delete_title">මෙම වාර්තාව මකන්නද?</string>
+    <string name="record_delete_message">%1$s මෙම දුරකථනයෙන් ඉවත් කරනු ලැබේ.</string>
+    <string name="record_zoom_close">වසන්න</string>
 </resources>
+
