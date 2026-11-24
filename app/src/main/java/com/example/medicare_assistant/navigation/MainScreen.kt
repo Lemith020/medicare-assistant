@@ -56,10 +56,15 @@ import com.example.medicare_assistant.profile.logic.AllergiesRoute
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
+import com.example.medicare_assistant.records.logic.RecordDetailRoute
+import com.example.medicare_assistant.records.logic.RecordFormRoute
+import com.example.medicare_assistant.records.logic.RecordsRoute
 enum class MainTab(@StringRes val labelRes: Int) {
     TODAY(R.string.nav_today),
     MEDICINES(R.string.nav_medicines),
     HISTORY(R.string.nav_history),
+
+    REPORTS(R.string.nav_reports),
     SETTINGS(R.string.nav_settings)
 }
 
@@ -69,6 +74,8 @@ fun MainScreen() {
     var overlay by rememberSaveable { mutableStateOf(Overlay.NONE) }
     var editId by rememberSaveable { mutableStateOf<Long?>(null) }
     var formKey by rememberSaveable { mutableIntStateOf(0) }
+    var recordId by rememberSaveable { mutableStateOf<Long?>(null) }
+    var recordFormKey by rememberSaveable { mutableIntStateOf(0) }
 
     val profileViewModel: ProfileViewModel = viewModel()
     val profile by profileViewModel.state.collectAsState()
@@ -79,9 +86,11 @@ fun MainScreen() {
         overlay = Overlay.ADD_MEDICINE
     }
 
-
     BackHandler(enabled = overlay != Overlay.NONE) {
-        overlay = overlay.parent ?: Overlay.NONE
+        overlay = when {
+            overlay == Overlay.RECORD_FORM && recordId != null -> Overlay.RECORD_DETAIL
+            else -> overlay.parent ?: Overlay.NONE
+        }
     }
 
     when (overlay) {
@@ -120,6 +129,22 @@ fun MainScreen() {
             onBack = { overlay = Overlay.PROFILE }
         )
 
+        Overlay.RECORD_DETAIL -> RecordDetailRoute(
+            recordId = recordId ?: -1L,
+            onBack = { overlay = Overlay.NONE },
+            onEdit = {
+                recordFormKey += 1
+                overlay = Overlay.RECORD_FORM
+            }
+        )
+
+        Overlay.RECORD_FORM -> RecordFormRoute(
+            editId = recordId,
+            formKey = recordFormKey,
+            onBack = { overlay = if (recordId != null) Overlay.RECORD_DETAIL else Overlay.NONE },
+            onSaved = { overlay = if (recordId != null) Overlay.RECORD_DETAIL else Overlay.NONE }
+        )
+
         // ===== [Main tabs] Today / Medicines / History / Settings =====
         Overlay.NONE -> Column(
             modifier = Modifier
@@ -141,6 +166,18 @@ fun MainScreen() {
                         onEditClick = { openForm(it) }
                     )
                     MainTab.HISTORY -> HistoryScreen()
+
+                    MainTab.REPORTS -> RecordsRoute(
+                        onAdd = {
+                            recordId = null
+                            recordFormKey += 1
+                            overlay = Overlay.RECORD_FORM
+                        },
+                        onOpen = { id ->
+                            recordId = id
+                            overlay = Overlay.RECORD_DETAIL
+                        }
+                    )
                     MainTab.SETTINGS -> SettingsScreen()
                 }
             }
