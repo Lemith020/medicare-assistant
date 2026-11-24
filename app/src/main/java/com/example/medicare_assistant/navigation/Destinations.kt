@@ -6,5 +6,9 @@ enum class Overlay(val parent: Overlay?) {
     ADD_MEDICINE(NONE),
     PROFILE(NONE),
     EDIT_PROFILE(PROFILE),
-    ALLERGIES(PROFILE)
+    ALLERGIES(PROFILE),
+
+    RECORD_DETAIL(NONE),
+
+    RECORD_FORM(NONE)
 }
