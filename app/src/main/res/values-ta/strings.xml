@@ -18,8 +18,10 @@
     <string name="greeting_morning">காலை வணக்கம்</string>
     <string name="greeting_afternoon">மதிய வணக்கம்</string>
     <string name="greeting_evening">மாலை வணக்கம்</string>
+    <string name="greeting_night">இனிய இரவு வணக்கம்</string>
     <string name="home_subtitle">இன்றைய மருந்துகள் · எடுத்தது %1$d / %2$d</string>
     <string name="home_next_dose">அடுத்த டோஸ் · %1$s</string>
+    <string name="home_next_dose_title">அடுத்த டோஸ்</string>
     <string name="home_all_done">இன்றைக்கு எல்லாம் முடிந்தது</string>
     <string name="home_all_done_body">இன்று மீதமுள்ள டோஸ்கள் இல்லை.</string>
     <string name="home_low_stock">இருப்பு குறைவு: %1$s %2$d மட்டுமே உள்ளது</string>
@@ -75,6 +77,14 @@
     <plurals name="tablets_left_low">
         <item quantity="one">%d மாத்திரை மீதம் · இருப்பு குறைவு</item>
         <item quantity="other">%d மாத்திரைகள் மீதம் · இருப்பு குறைவு</item>
+    </plurals>
+    <plurals name="ml_left">
+        <item quantity="one">%d මි.ሊ. மீதமுள்ளது</item>
+        <item quantity="other">%d මි.ሊ. மீதமுள்ளது</item>
+    </plurals>
+    <plurals name="ml_left_low">
+        <item quantity="one">%d මි.ሊ. மீதமுள்ளது · இருப்பு குறைவு</item>
+        <item quantity="other">%d මි.ሊ. மீதமுள்ளது · இருப்பு குறைவு</item>
     </plurals>
 
     <string name="form_add_title">மருந்தைச் சேர்</string>
@@ -229,8 +239,9 @@
     <string name="edit_use_location">எனது தற்போதைய இடத்தைப் பயன்படுத்து</string>
     <string name="edit_save">சுயவிவரத்தைச் சேமி</string>
     <string name="edit_error_name">உங்கள் பெயரை உள்ளிடவும்</string>
-    <string name="edit_error_age">வயதை 1 முதல் 120 வரை உள்ளிடவும்</string>
-    <string name="edit_error_phone">சரியான தொலைபேசி எண்ணை உள்ளிடவும்</string>
+    <string name="edit_error_name_length">பெயர் 40 எழுத்துகளுக்கு மேல் இருக்கக்கூடாது</string>
+    <string name="edit_error_age">1 முதல் 199 வரை வயதை உள்ளிடவும்</string>
+    <string name="edit_error_phone">10 இலக்க தொலைபேசி எண்ணை உள்ளிடவும்</string>
 
     <string name="edit_error_no_camera">கேமரா பயன்பாடு எதுவும் இல்லை</string>
     <string name="profile_locating">இடத்தைப் பெறுகிறது…</string>

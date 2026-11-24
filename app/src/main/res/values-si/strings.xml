@@ -18,8 +18,10 @@
     <string name="greeting_morning">සුභ උදෑසනක්</string>
     <string name="greeting_afternoon">සුභ දහවලක්</string>
     <string name="greeting_evening">සුභ සන්ධ්‍යාවක්</string>
+    <string name="greeting_night">සුභ රාත්‍රියක්</string>
     <string name="home_subtitle">අද බෙහෙත් · ගත්තා %1$d / %2$d</string>
     <string name="home_next_dose">ඊළඟ මාත්‍රාව · %1$s</string>
+    <string name="home_next_dose_title">ඊළඟ මාත්‍රාව</string>
     <string name="home_all_done">අද සියල්ල ඉවරයි</string>
     <string name="home_all_done_body">අද ඉතිරි මාත්‍රා නැත.</string>
     <string name="home_low_stock">තොගය අඩුයි: %1$s පෙති %2$d ක් ඉතිරියි</string>
@@ -75,6 +77,14 @@
     <plurals name="tablets_left_low">
         <item quantity="one">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
         <item quantity="other">පෙති %d ක් ඉතිරියි · තොගය අඩුයි</item>
+    </plurals>
+    <plurals name="ml_left">
+        <item quantity="one">මිලිලීටර් %d ක් ඉතිරියි</item>
+        <item quantity="other">මිලිලීටර් %d ක් ඉතිරියි</item>
+    </plurals>
+    <plurals name="ml_left_low">
+        <item quantity="one">මිලිලීටර් %d ක් ඉතිරියි · තොගය අඩුයි</item>
+        <item quantity="other">මිලිලීටර් %d ක් ඉතිරියි · තොගය අඩුයි</item>
     </plurals>
 
     <string name="form_add_title">බෙහෙතක් එක් කරන්න</string>
@@ -229,8 +239,9 @@
     <string name="edit_use_location">මගේ දැන් ඉන්න තැන භාවිතා කරන්න</string>
     <string name="edit_save">ප්‍රොෆයිලය සුරකින්න</string>
     <string name="edit_error_name">ඔබේ නම ඇතුළත් කරන්න</string>
-    <string name="edit_error_age">වයස 1 සිට 120 දක්වා ඇතුළත් කරන්න</string>
-    <string name="edit_error_phone">නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න</string>
+    <string name="edit_error_name_length">නම අක්ෂර 40 ඉක්මවිය නොහැක</string>
+    <string name="edit_error_age">1 සිට 199 දක්වා වයසක් ඇතුළත් කරන්න</string>
+    <string name="edit_error_phone">ඉලක්කම් 10 ක දුරකථන අංකයක් ඇතුළත් කරන්න</string>
 
     <string name="edit_error_no_camera">කැමරා යෙදුමක් හමු නොවීය</string>
     <string name="profile_locating">ස්ථානය ලබාගනිමින්…</string>
