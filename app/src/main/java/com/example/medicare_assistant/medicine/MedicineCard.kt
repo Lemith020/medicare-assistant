@@ -2,10 +2,10 @@ package com.example.medicare_assistant.medicine
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -177,12 +177,15 @@ fun MedicineCard(
                     .height(48.dp)
                     .semantics { contentDescription = resources.getString(R.string.action_edit_for, medicine.name) },
                 shape = RoundedCornerShape(50),
+                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White, contentColor = Ink)
             ) {
                 Text(
                     text = stringResource(R.string.action_edit) + " ✏️",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    softWrap = false
                 )
             }
             Button(
@@ -191,13 +194,16 @@ fun MedicineCard(
                     .weight(1f)
                     .height(48.dp)
                     .semantics { contentDescription = resources.getString(R.string.action_delete_for, medicine.name) },
-                shape = RoundedCornerShape(18.dp),
+                shape = RoundedCornerShape(50),
+                contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFEE2E2), contentColor = Color(0xFFB91C1C))
             ) {
                 Text(
                     text = stringResource(R.string.action_delete) + " 🗑️",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    softWrap = false
                 )
             }
         }
