@@ -270,4 +270,20 @@
     <string name="text_size_preview_label">Preview</string>
     <string name="text_size_preview_name">Metformin 500 mg</string>
     <string name="text_size_preview_time">Take at 2:00 PM</string>
+
+    <!-- Emergency Feature -->
+    <string name="emergency_sos">SOS</string>
+    <string name="emergency_fab_desc">Emergency Call</string>
+    <string name="emergency_title">Emergency Contacts</string>
+    <string name="emergency_suwa_seriya">1990 Suwa Seriya</string>
+    <string name="emergency_ambulance_sub">Ambulance • 1990</string>
+    <string name="emergency_police">Police Emergency</string>
+    <string name="emergency_add_btn">Add</string>
+    <string name="emergency_close_btn">Close</string>
+    <string name="emergency_name_label">Name (e.g. Family Doctor)</string>
+    <string name="emergency_phone_label">Phone Number</string>
+    <string name="emergency_save_btn">Save</string>
+    <string name="emergency_cancel_btn">Cancel</string>
+    <string name="emergency_call_desc">Call %1$s</string>
+    <string name="emergency_delete_desc">Delete %1$s</string>
 </resources>
