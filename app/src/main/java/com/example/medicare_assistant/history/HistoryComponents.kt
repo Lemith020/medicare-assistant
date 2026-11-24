@@ -26,6 +26,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.medicare_assistant.R
@@ -152,16 +154,24 @@ private fun WeekCell(day: WeekDay, locale: Locale, colors: StatusColors, modifie
         modifier = modifier.semantics(mergeDescendants = true) { contentDescription = "$label: $resultText" },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
+        Text(
+            text = label,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontSize = 11.sp,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Clip,
+            textAlign = TextAlign.Center
+        )
         Spacer(Modifier.height(4.dp))
         Box(
             modifier = Modifier
-                .size(36.dp)
+                .size(32.dp)
                 .background(background, CircleShape)
                 .border(1.dp, MaterialTheme.colorScheme.outlineVariant, CircleShape),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = symbol, color = content, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(text = symbol, color = content, fontSize = 15.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
