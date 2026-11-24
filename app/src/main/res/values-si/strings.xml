@@ -268,4 +268,20 @@
     <string name="text_size_preview_label">පෙරදසුන</string>
     <string name="text_size_preview_name">Metformin 500 mg</string>
     <string name="text_size_preview_time">ගන්න වෙලාව: 2:00 PM</string>
+
+    <!-- Emergency Feature -->
+    <string name="emergency_sos">SOS</string>
+    <string name="emergency_fab_desc">හදිසි ඇමතුම්</string>
+    <string name="emergency_title">හදිසි ඇමතුම් අංක</string>
+    <string name="emergency_suwa_seriya">1990 සුව සැරිය</string>
+    <string name="emergency_ambulance_sub">ගිලන් රථ සේවය • 1990</string>
+    <string name="emergency_police">පොලිස් හදිසි ඇමතුම්</string>
+    <string name="emergency_add_btn">එකතු කරන්න</string>
+    <string name="emergency_close_btn">වසන්න</string>
+    <string name="emergency_name_label">නම (උදා: පවුලේ වෛද්‍යවරයා)</string>
+    <string name="emergency_phone_label">දුරකථන අංකය</string>
+    <string name="emergency_save_btn">සුරකින්න</string>
+    <string name="emergency_cancel_btn">අවලංගු කරන්න</string>
+    <string name="emergency_call_desc">%1$s අමතන්න</string>
+    <string name="emergency_delete_desc">%1$s ඉවත් කරන්න</string>
 </resources>
