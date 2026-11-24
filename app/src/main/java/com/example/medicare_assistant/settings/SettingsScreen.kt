@@ -1,5 +1,6 @@
 package com.example.medicare_assistant.settings
 
+import android.app.Activity
 import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +26,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
@@ -39,6 +41,8 @@ import com.example.medicare_assistant.R
 fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
     val settings by viewModel.settings.collectAsState()
     val current = settings ?: AppSettings()
+    val context = LocalContext.current
+    val activity = context as? Activity
 
     Column(
         modifier = Modifier
@@ -75,7 +79,10 @@ fun SettingsScreen(viewModel: SettingsViewModel = viewModel()) {
                 OptionRow(
                     label = language.nativeName,
                     selected = current.language == language,
-                    onClick = { viewModel.setLanguage(language) }
+                    onClick = {
+                        viewModel.setLanguage(language)
+                        activity?.recreate()
+                    }
                 )
             }
         }
