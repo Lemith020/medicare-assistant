@@ -32,6 +32,12 @@ import com.example.medicare_assistant.ui.components.ProfileAvatar
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import androidx.compose.foundation.layout.Box
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.example.medicare_assistant.emergency.EmergencyDialog
+import com.example.medicare_assistant.emergency.EmergencyFab
 
 @Composable
 fun HomeScreen(
@@ -59,6 +65,8 @@ fun HomeScreen(
 }
 
 @Composable
+
+
 private fun HomeContent(
     state: HomeState,
     onAddMedicine: () -> Unit,
@@ -79,7 +87,9 @@ private fun HomeContent(
         else -> R.string.greeting_evening
     }
     val date = LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM", locale))
+    var showEmergencyDialog by remember { mutableStateOf(false) }
 
+    Box(modifier = Modifier.fillMaxSize()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -142,5 +152,18 @@ private fun HomeContent(
         state.lowStock?.let { LowStockBanner(name = it.name, count = it.stock) }
 
         others.forEach { DoseRow(dose = it, locale = locale) }
+    }
+        EmergencyFab(
+            onClick = { showEmergencyDialog = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 20.dp, bottom = 16.dp)
+        )
+
+        if (showEmergencyDialog) {
+            EmergencyDialog(
+                onDismiss = { showEmergencyDialog = false }
+            )
+        }
     }
 }
