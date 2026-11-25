@@ -3,19 +3,6 @@
 
 
 
-- ## Roadmap
-
-- [ ] Medicine CRUD with Room
-- [ ] Reminders and alarms
-- [ ] Stock alerts
-- [ ] Health logging and charts
-- [ ] Authentication and roles
-- [ ] SOS
-- [ ] Caregiver monitoring
-- [ ] Report upload and OCR
-- [ ] AI report summary
-- [ ] Voice access
-- [ ] Doctor connect
 
 
 ## Getting Started
