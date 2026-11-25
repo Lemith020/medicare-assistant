@@ -1,12 +1,5 @@
 
 
-## Target Users
-
-- Chronic patients (diabetes, hypertension)
-- Elderly people
-- Caregivers and family members
-- Doctors and medical staff
-
 
 ## Tech Stack
 
