@@ -10,15 +10,7 @@
 
 Medicare helps people take their medicines on time, especially elderly patients and people on short treatment courses (1 to 4 weeks). It works fully offline, keeps all data on the phone, and is designed to be usable by people with low vision, hearing difficulty or limited mobility.
 
-## Demo
 
-> Add your demo video link and screenshots here.
-
-| Home | Alarm | History | Medical Records |
-|---|---|---|---|
-| ![Home](docs/screenshots/home.png) | ![Alarm](docs/screenshots/alarm.png) | ![History](docs/screenshots/history.png) | ![Records](docs/screenshots/records.png) |
-
-Demo video: <add link>
 
 ## Why Medicare
 
