@@ -1,18 +1,7 @@
 
 
 
-## Tech Stack
 
-- Language: Kotlin
-- UI: Jetpack Compose
-- Architecture: MVVM
-- Local DB: Room
-- DI: Hilt
-- Background work: WorkManager, AlarmManager
-- Backend: Firebase (Auth, Firestore, Storage, FCM)
-- ML: ML Kit Text Recognition, OpenCV
-- Networking: Retrofit, OkHttp
-- Charts: Vico
 
 - ## Roadmap
 
