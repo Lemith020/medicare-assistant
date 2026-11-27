@@ -158,7 +158,6 @@ On some phones (Samsung, Xiaomi, Oppo, Vivo) set the app's battery usage to **Un
 - Records support photos only (no PDF import)
 - Sinhala and Tamil translations are drafts and may need review by native speakers
 
-## Disclaimer
 
 
 
