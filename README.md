@@ -168,7 +168,7 @@ Medicare is a reminder and record-keeping tool. It does **not** provide medical 
 Software Engineering undergraduate, University of Kelaniya
 
 - GitHub: [Lemith020](https://github.com/Lemith020)
-- LinkedIn: [lemith-nanditha](https://www.linkedin.com/in/lemith-nanditha)
+
 
 
 
