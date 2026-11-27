@@ -160,7 +160,7 @@ On some phones (Samsung, Xiaomi, Oppo, Vivo) set the app's battery usage to **Un
 
 ## Disclaimer
 
-Medicare is a reminder and record-keeping tool. It does **not** provide medical advice, diagnosis or treatment. Always follow your doctor's instructions.
+
 
 
 
