@@ -170,9 +170,6 @@ Software Engineering undergraduate, University of Kelaniya
 - GitHub: [Lemith020](https://github.com/Lemith020)
 - LinkedIn: [lemith-nanditha](https://www.linkedin.com/in/lemith-nanditha)
 
-## License
-
-Add a license file (for example MIT) and update this section.
 
 
 
